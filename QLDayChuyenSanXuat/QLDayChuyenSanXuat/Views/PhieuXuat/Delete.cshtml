@@ -1,0 +1,81 @@
+﻿@model QLDayChuyenSanXuat.Models.tbl_PhieuXuat
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tbl_PhieuXuat</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayLap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayLap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiTaoPhieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiTaoPhieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiYeuCau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiYeuCau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiPheDuyet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiPheDuyet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiCapNhat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiCapNhat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeUpDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeUpDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrangThai)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

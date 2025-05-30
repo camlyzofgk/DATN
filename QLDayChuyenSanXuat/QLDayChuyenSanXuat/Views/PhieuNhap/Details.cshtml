@@ -1,0 +1,75 @@
+﻿@model QLDayChuyenSanXuat.Models.tbl_PhieuNhap
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_PhieuNhap</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayLap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayLap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiTaoPhieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiTaoPhieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NhaCungCap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhaCungCap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiNhan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiNhan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiCapNhat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiCapNhat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeUpdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeUpdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrangThai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SoPhieu }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

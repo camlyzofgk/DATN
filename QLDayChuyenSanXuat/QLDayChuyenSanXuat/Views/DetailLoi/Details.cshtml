@@ -1,0 +1,1235 @@
+﻿@model QLDayChuyenSanXuat.Models.tbl_DetailLoi
+@using QLDayChuyenSanXuat.Models
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    QLDayChuyenSX db = new QLDayChuyenSX();
+    var lisPB = db.tbl_PhongBan.Select(x => x.MaPB).ToList();
+    var pbNDNC = db.tbl_User.Where(x => x.ADID == Model.NguoiDamNhiemChinh).FirstOrDefault().MaPB;
+    var emailNDNC = db.tbl_User.Where(x => x.ADID == Model.NguoiDamNhiemChinh).FirstOrDefault().Mail;
+
+    var pbNDNNN = db.tbl_User.Where(x => x.ADID == Model.NguoiDNGhiNhapNN).FirstOrDefault().MaPB;
+    var emailNDNNN = db.tbl_User.Where(x => x.ADID == Model.NguoiDNGhiNhapNN).FirstOrDefault().Mail;
+
+    var pbNDNDSTT = db.tbl_User.Where(x => x.ADID == Model.NguoiDNGhiNhapDSTT).FirstOrDefault().MaPB;
+    var emailNDNDSTT = db.tbl_User.Where(x => x.ADID == Model.NguoiDNGhiNhapDSTT).FirstOrDefault().Mail;
+
+    var pbNDNGNDS = db.tbl_User.Where(x => x.ADID == Model.NguoiDNGhiNhapDSCH).FirstOrDefault().MaPB;
+    var emailNDNGNDS = db.tbl_User.Where(x => x.ADID == Model.NguoiDNGhiNhapDSCH).FirstOrDefault().Mail;
+
+    var pbNDNPDDS = db.tbl_User.Where(x => x.ADID == Model.NguoiDNPheDuyetDS).FirstOrDefault().MaPB;
+    var emailNDNPDDS = db.tbl_User.Where(x => x.ADID == Model.NguoiDNPheDuyetDS).FirstOrDefault().Mail;
+    var HotenNDNPDDS = db.tbl_User.Where(x => x.ADID == Model.NguoiDNPheDuyetDS).FirstOrDefault().Name;
+
+    var pbNDNGNHQ = db.tbl_User.Where(x => x.ADID == Model.NguoiDNGhiNhapHQ).FirstOrDefault().MaPB;
+    var emailNDNGNHQ = db.tbl_User.Where(x => x.ADID == Model.NguoiDNGhiNhapHQ).FirstOrDefault().Mail;
+
+    var pbNDNPDHQ = db.tbl_User.Where(x => x.ADID == Model.NguoiDNPheDuyetHQ).FirstOrDefault().MaPB;
+    var emailNDNPDHQ = db.tbl_User.Where(x => x.ADID == Model.NguoiDNPheDuyetHQ).FirstOrDefault().Mail;
+    var hotenNDNPDHQ = db.tbl_User.Where(x => x.ADID == Model.NguoiDNPheDuyetHQ).FirstOrDefault().Name;
+
+    var HT = db.tbl_HienTuong.Where(x => x.MaLoi == Model.Maloi).OrderByDescending(x => x.ID).FirstOrDefault();
+
+    var NN = db.tbl_NguyenNhan.Where(x => x.MaLoi == Model.Maloi).OrderByDescending(x => x.ID).FirstOrDefault();
+    tbl_NguyenNhan view_NN = new tbl_NguyenNhan()
+    {
+        MaLoi = Model.Maloi,
+        ChiTietTN = "",
+        ChiTietTV = "",
+        PhanLoaiNN_Lon = "",
+        PhanLoaiNN_Nho = "",
+        NguoiUpdate = "",
+        TimeUpdate = null,
+        SoCungSuKien = "",
+        TrangThai = "Ghi nhập"
+    };
+    if (NN != null)
+    {
+        view_NN.ChiTietTV = NN.ChiTietTV;
+        view_NN.ChiTietTN = NN.ChiTietTN;
+        view_NN.PhanLoaiNN_Lon = NN.PhanLoaiNN_Lon;
+        view_NN.PhanLoaiNN_Nho = NN.PhanLoaiNN_Nho;
+        view_NN.NguoiUpdate = NN.NguoiUpdate;
+        view_NN.TimeUpdate = NN.TimeUpdate;
+        view_NN.SoCungSuKien = NN.SoCungSuKien;
+        view_NN.TrangThai = NN.TrangThai;
+    }
+
+    var DSTT = db.tbl_DoiSachTamThoi.Where(x => x.MaLoi == Model.Maloi).OrderByDescending(x => x.ID).FirstOrDefault();
+    tbl_DoiSachTamThoi view_DSTT = new tbl_DoiSachTamThoi()
+    {
+        MaLoi = Model.Maloi,
+        TimeStart = null,
+        PhanLoaiDSTT_Lon = "",
+        PhanLoaiDSTT_Nho = "",
+        NguoiTH = "",
+        NguoiUpdate = "",
+        TimeUpdate = null,
+        SoCungSuKien = "",
+        ChiTietTN = "",
+        ChiTietTV = "",
+        TrangThai = "Ghi nhập"
+    };
+    if (DSTT != null)
+    {
+        view_DSTT.TimeStart = DSTT.TimeStart;
+        view_DSTT.PhanLoaiDSTT_Lon = DSTT.PhanLoaiDSTT_Lon;
+        view_DSTT.PhanLoaiDSTT_Nho = DSTT.PhanLoaiDSTT_Nho;
+        view_DSTT.NguoiTH = DSTT.NguoiTH;
+        view_DSTT.NguoiUpdate = DSTT.NguoiTH;
+        view_DSTT.TimeUpdate = DSTT.TimeUpdate;
+        view_DSTT.SoCungSuKien = DSTT.SoCungSuKien;
+        view_DSTT.ChiTietTN = DSTT.ChiTietTN;
+        view_DSTT.ChiTietTV = DSTT.ChiTietTV;
+        view_DSTT.TrangThai = DSTT.TrangThai;
+    }
+
+    var DSCH = db.tbl_DoiSachCoHuu.Where(x => x.MaLoi == Model.Maloi).OrderByDescending(x => x.ID).FirstOrDefault();
+    tbl_DoiSachCoHuu view_DSCH = new tbl_DoiSachCoHuu()
+    {
+        MaLoi = Model.Maloi,
+        TimeStart = null,
+        PhanLoaiDSCH_Lon = "",
+        PhanLoaiDSCH_Nho = "",
+        NguoiTH = "",
+        NguoiUpDate = "",
+        NguoiXN = "",
+        TimeUpDate = null,
+        SoCungSuKien = "",
+        ChiTietTN = "",
+        ChiTietTV = "",
+        TrangThai = "Ghi nhập"
+    };
+    if (DSCH != null)
+    {
+        view_DSCH.TimeStart = DSCH.TimeStart;
+        view_DSCH.PhanLoaiDSCH_Lon = DSCH.PhanLoaiDSCH_Lon;
+        view_DSCH.PhanLoaiDSCH_Nho = DSCH.PhanLoaiDSCH_Nho;
+        view_DSCH.NguoiTH = DSCH.NguoiTH;
+        view_DSCH.NguoiXN = DSCH.NguoiXN;
+        view_DSCH.NguoiUpDate = DSCH.NguoiUpDate;
+        view_DSCH.TimeUpDate = DSCH.TimeUpDate;
+        view_DSCH.SoCungSuKien = DSCH.SoCungSuKien;
+        view_DSCH.ChiTietTN = DSCH.ChiTietTN;
+        view_DSCH.ChiTietTV = DSCH.ChiTietTV;
+        view_DSCH.TrangThai = DSCH.TrangThai;
+    }
+
+    var HQDS = db.tbl_HieuQua.Where(x => x.MaLoi == Model.Maloi).OrderByDescending(x => x.ID).FirstOrDefault();
+    tbl_HieuQua view_HS = new tbl_HieuQua()
+    {
+        MaLoi = Model.Maloi,
+        TimeDoneHQ = null,
+        NguoiXN = "",
+        NguoiUpdate = "",
+        TimeUpdate = null,
+        SoCungSuKien = "",
+        ChiTietTN = "",
+        ChiTietTV = "",
+        TrangThai = "Ghi nhập",
+    };
+    if (HQDS != null)
+    {
+        view_HS.TimeDoneHQ = HQDS.TimeDoneHQ;
+        view_HS.NguoiXN = HQDS.NguoiXN;
+        view_HS.NguoiUpdate = HQDS.NguoiXN;
+        view_HS.TimeUpdate = HQDS.TimeUpdate;
+        view_HS.SoCungSuKien = HQDS.SoCungSuKien;
+        view_HS.ChiTietTN = HQDS.ChiTietTN;
+        view_HS.ChiTietTV = HQDS.ChiTietTV;
+        view_HS.TrangThai = HQDS.TrangThai;
+    }
+}
+@if (TempData["ThongBao"] != null)
+{
+    <div class="modal fade" id="ThongBaoModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="text-align:center;">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="modalTitle">Thông báo</h5>
+                </div>
+                <div class="modal-body" style="display:grid;">
+                    <div>
+                        <i class="fa fa-check-circle" style="background-color: green; color: white; border-radius: 50%; padding: 8px;font-size:50px;"></i>
+                    </div>
+                    @TempData["ThongBao"]
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#ThongBaoModal').modal('show');
+        });
+    </script>
+}
+<div style="display: flex; justify-content: space-between; border-bottom: 1px solid black; padding: 10px 0; margin: 10px;">
+    <h3>Chi tiết thông tin lỗi @Model.Maloi</h3>
+    <div style="display:flex;">
+        <a href="@Url.Action("Index","DetailLoi")" class="btn" style="background-color:transparent;border:none;"> <i class="fa fa-list-ul"></i>&nbsp;Danh sách</a>
+        <a href="@Url.Action("Details", "DetailLoi", new {id = Model.ID})" class="btn" style="background-color:transparent;border:none;"><i class="fa fa-info-circle"></i>&nbsp;Chi tiết</a>
+        <a href="@Url.Action("LichSu", "DetailLoi", new {maloi = Model.Maloi})" class="btn" style="background-color:transparent;border:none;"><i class="fa fa-clock-o"></i>&nbsp;Lịch sử</a>
+    </div>
+</div>
+<div style="display: flex;">
+    <div style="width:55%;margin:0 3%">
+        <table class="tab">
+            <tr>
+                <th>Model</th>
+                <td>@Model.Model</td>
+            </tr>
+            <tr>
+                <th>Loại máy</th>
+                <td>@Model.LoaiMay</td>
+            </tr>
+            <tr>
+                <th>Tiêu đề tiếng Nhật</th>
+                <td>@Model.TieuDeTN</td>
+            </tr>
+            <tr>
+                <th>Tiêu đề tiếng Việt</th>
+                <td>@Model.TieuDeTV</td>
+            </tr>
+            <tr>
+                <th>Thời gian phát sinh</th>
+                <td>@Model.ThoiDiemPhatSinh</td>
+            </tr>
+            <tr>
+                <th>Thời gian bắt đầu lại</th>
+                <td>@Model.ThoiDiemBatDauLai</td>
+            </tr>
+            <tr>
+                <th>Phân loại hiện tượng</th>
+                <td>@Model.PhanLoaiHT_Lon/ @Model.PhanLoaiHT_Nho</td>
+            </tr>
+            <tr>
+                <th>Phân loại nguyên nhân</th>
+                <td>@view_NN.PhanLoaiNN_Lon/ @view_NN.PhanLoaiNN_Nho</td>
+            </tr>
+        </table>
+    </div>
+    <div style="width:45%;">
+        <table class="tab">
+            <tr>
+                <th>Tiến độ</th>
+                <td>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>@Model.TienDo</span>
+                        @if ((string)Session["ADID"] == Model.NguoiDamNhiemChinh)
+                        {
+                            <button type="button" style="background-color:transparent;border:none;" data-toggle="modal" data-target="#ModalTienDo">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                        }
+                        <div class="modal fade" id="ModalTienDo" tabindex="-1" role="dialog" aria-labelledby="ModalTienDoLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <form action="@Url.Action("UpdateTienDo", "DetailLoi", new { maloi = Model.Maloi})">
+                                        <div class="modal-header" style=" background-color: #0063cc; color: white;">
+                                            <h5 class="modal-title" id="ModalTienDoLabel">Thay đổi tiến độ</h5>
+                                            <button type="button" style="color:white;" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="tab">
+                                                <tr>
+                                                    <th>Mã lỗi</th>
+                                                    <td>
+                                                        <input type="text" name="maloi" readonly value="@Model.Maloi" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Tiến độ</th>
+                                                    <td>
+                                                        <select id="TienDo" name="TienDo" class="form-control">
+                                                            <option>Đang điều tra nguyên nhân</option>
+                                                            <option>Hoàn thành điều tra nguyên nhân</option>
+                                                            <option>Hoàn thành đối sách tạm thời</option>
+                                                            <option>Chờ phê duyệt đối sách cố hữu</option>
+                                                            <option>Hoàn thành đối sách cố hữu</option>
+                                                            <option>Chờ phê duyệt hiệu quả</option>
+                                                            <option>Close</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Người cập nhật</th>
+                                                    <td>
+                                                        <input type="text" name="NguoiUpdateTD" readonly value="@Session["ADID"]" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Lý do</th>
+                                                    <td>
+                                                        <select name="LyDo" class="form-control">
+                                                            <option value="">-Chọn-</option>
+                                                            <option>Tái Phát</option>
+                                                            <option>Phát sinh mới</option>
+                                                            <option>Mãn tính</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>Người đảm nhiệm chính</th>
+                <td>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>@pbNDNC: @Model.NguoiDamNhiemChinh</span>
+                        @if ((string)Session["ADID"] == Model.NguoiDamNhiemChinh || (string)Session["ADID"] == Model.NguoiPhatHanh)
+                        {
+                            <button type="button" style="background-color:transparent;border:none;" data-toggle="modal" data-target="#ModalNguoiDNChinh"><i class="fa fa-edit"></i></button>
+                        }
+                        <div class="modal fade" id="ModalNguoiDNChinh" tabindex="-1" role="dialog" aria-labelledby="ModalNguoiDNChinhLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <form action="@Url.Action("UpdateDN","DetailLoi")">
+                                        <div class="modal-header" style=" background-color: #0063cc; color: white;">
+                                            <h5 class="modal-title" id="ModalNguoiDNChinh">Thay đổi người đảm nhiệm chính</h5>
+                                            <button class="close" style="color:white;" type="button" data-dismiss="modal" aria-label="Close">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="tab">
+                                                <tr>
+                                                    <th>Mã lỗi</th>
+                                                    <td>
+                                                        <input type="text" name="maloi" readonly value="@Model.Maloi" class="form-control" style=" max-width: 100%; width: 100%;" />
+                                                        <input type="text" name="step" hidden value="Người đảm nhiệm chính" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Người đảm nhiệm chính</th>
+                                                    <td>
+                                                        <div style="display:flex;">
+                                                            <select name="PhongBanDNC" id="PhongBanDNC" class="form-control" style="width: fit-content; margin-right: 5px; max-width: 100%;">
+                                                                @foreach (var item in lisPB)
+                                                                {
+                                                                    <option value="@item">@item</option>
+                                                                }
+                                                            </select>
+                                                            <select name="NguoiDN" id="NguoiDNC" class="form-control" style="width: fit-content; max-width: 100%;">
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Người cập nhật</th>
+                                                    <td>
+                                                        <input type="text" name="NguoiUpdateDN" readonly value="@Session["ADID"]" class="form-control" style=" max-width: 100%; width: 100%;" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Lý do</th>
+                                                    <td>
+                                                        <textarea name="LyDo" placeholder="Nhập lý do thay đổi" style="max-width: 100%;width:100%;"></textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>Người đảm nhiệm ghi nhập nguyên nhân</th>
+                <td>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>@pbNDNNN: @Model.NguoiDNGhiNhapNN</span>
+                        @if ((string)Session["ADID"] == Model.NguoiDamNhiemChinh || (string)Session["ADID"] == Model.NguoiDNGhiNhapNN)
+                        {
+                            <button type="button" style="background-color:transparent;border:none" data-toggle="modal" data-target="#ModalNN"><i class="fa fa-edit"></i></button>
+                        }
+                        <div class="modal fade" id="ModalNN" role="dialog" tabindex="-1" aria-labelledby="ModalNNLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <form action="@Url.Action("UpdateDN","DetailLoi")">
+                                        <div class="modal-header" style=" background-color: #0063cc; color: white;">
+                                            <h5 class="modal-title" id="ModalNNLabel">Thay đổi người đảm nhiệm ghi nhập nguyên nhân</h5>
+                                            <button type="button" style="color:white;" class="close" aria-label="Close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="tab">
+                                                <tr>
+                                                    <th>Mã lỗi</th>
+                                                    <td>
+                                                        <input type="text" name="maloi" readonly value="@Model.Maloi" class="form-control" style=" max-width: 100%; width: 100%;" />
+                                                        <input type="text" name="step" hidden value="Người đảm nhiệm ghi nhập nguyên nhân" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Người đảm nhiệm ghi nhập nguyên nhân</th>
+                                                    <td>
+                                                        <div style="display:flex;">
+                                                            <select name="PhongBanNN" id="PhongBanNN" class="form-control" style="width: fit-content; margin-right: 5px; max-width: 100%;">
+                                                                @foreach (var item in lisPB)
+                                                                {
+                                                                    <option value="@item">@item</option>
+                                                                }
+                                                            </select>
+                                                            <select name="NguoiDN" id="NguoiDNNN" class="form-control" style="width: fit-content; max-width: 100%;">
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Người cập nhật</th>
+                                                    <td>
+                                                        <input type="text" name="NguoiUpdateDN" readonly value="@Session["ADID"]" class="form-control" style=" max-width: 100%; width: 100%;" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Lý do</th>
+                                                    <td>
+                                                        <textarea placeholder="Nhập lý do thay đổi" name="LyDo" style="max-width: 100%; width: 100%;"></textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>Người đảm nhiệm ghi nhập đối sách tạm thời</th>
+                <td>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>@pbNDNDSTT: @Model.NguoiDNGhiNhapDSTT</span>
+                        @if ((string)Session["ADID"] == Model.NguoiDamNhiemChinh || (string)Session["ADID"] == Model.NguoiDNGhiNhapDSTT)
+                        {
+                            <button type="button" data-toggle="modal" data-target="#ModalDSTT" style="background-color:transparent;border:none;"><i class="fa fa-edit"></i></button>
+                        }
+                        <div class="modal fade" id="ModalDSTT" role="dialog" tabindex="-1" aria-labelledby="ModalDSTTLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <form action="@Url.Action("UpdateDN","DetailLoi")">
+                                        <div class="modal-header" style=" background-color: #0063cc; color: white;">
+                                            <h5 class="modal-title" id="ModalDSTTLabel">Thay đổi người đảm nhiệm ghi nhập đối sách tạm thời</h5>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="tab">
+                                                <tr>
+                                                    <th>Mã lỗi</th>
+                                                    <td>
+                                                        <input type="text" name="maloi" readonly value="@Model.Maloi" class="form-control" style=" max-width: 100%; width: 100%;" />
+                                                        <input type="text" name="step" hidden value="Người đảm nhiệm ghi nhập đối sách tạm thời" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Người đảm nhiệm ghi nhập đối sách tạm thời</th>
+                                                    <td>
+                                                        <div style="display:flex;">
+                                                            <select name="PhongBanDSTT" id="PhongBanDSTT" class="form-control" style="width: fit-content; margin-right: 5px; max-width: 100%;">
+                                                                @foreach (var item in lisPB)
+                                                                {
+                                                                    <option value="@item">@item</option>
+                                                                }
+                                                            </select>
+                                                            <select name="NguoiDN" id="NguoiDNDSTT" class="form-control" style="width: fit-content; max-width: 100%;">
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Người cập nhật</th>
+                                                    <td>
+                                                        <input type="text" name="NguoiUpdateDN" readonly value="@Session["ADID"]" class="form-control" style=" max-width: 100%; width: 100%;" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Lý do</th>
+                                                    <td>
+                                                        <textarea placeholder="Nhập lý do" name="LyDo" style="max-width: 100%; width: 100%;"></textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" data-dismiss="modal" class="btn btn-secondary">Đóng</button>
+                                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>Người đảm nhiệm ghi nhập đối sách cố hữu</th>
+                <td>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>@pbNDNGNDS: @Model.NguoiDNGhiNhapDSCH</span>
+                        @if ((string)Session["ADID"] == Model.NguoiDamNhiemChinh || (string)Session["ADID"] == Model.NguoiDNGhiNhapDSCH)
+                        {
+                            <button type="button" style="background-color:transparent;border:none;" data-toggle="modal" data-target="#ModalDSCH"><i class="fa fa-edit"></i></button>
+                        }
+                        <div class="modal fade" role="dialog" id="ModalDSCH" tabindex="-1" aria-labelledby="ModalDSCHLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <form action="@Url.Action("UpdateDN","DetailLoi")">
+                                        <div class="modal-header" style=" background-color: #0063cc; color: white;">
+                                            <h5 class="modal-title" id="ModalDSCHLabel">Thay đổi người đảm nhiệm ghi nhập đối sách cố hữu</h5>
+                                            <button type="button" style="color:white;" class="close" aria-label="Close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="tab">
+                                                <tr>
+                                                    <th>Mã lỗi</th>
+                                                    <td>
+                                                        <input type="text" name="maloi" readonly value="@Model.Maloi" class="form-control" style=" max-width: 100%; width: 100%;" />
+                                                        <input type="text" name="step" hidden value="Người đảm nhiệm ghi nhập đối sách cố hữu" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Người đảm nhiệm ghi nhập đối sách cố hữu</th>
+                                                    <td>
+                                                        <div style="display:flex;">
+                                                            <select name="PhongBanDSCH" id="PhongBanDSCH" class="form-control" style="width: fit-content; margin-right: 5px; max-width: 100%;">
+                                                                @foreach (var item in lisPB)
+                                                                {
+                                                                    <option value="@item">@item</option>
+                                                                }
+                                                            </select>
+                                                            <select name="NGuoiDN" id="NGuoiDNDSCH" class="form-control" style="width: fit-content; max-width: 100%;">
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Người cập nhật</th>
+                                                    <td>
+                                                        <input type="text" name="NguoiUpdateDN" readonly value="@Session["ADID"]" class="form-control" style=" max-width: 100%; width: 100%;" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Lý do</th>
+                                                    <td>
+                                                        <textarea name="LyDo" placeholder="Nhập lý do" style="max-width: 100%; width: 100%;"></textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" data-dismiss="modal" class="btn btn-secondary">Đóng</button>
+                                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>Người đảm nhiệm phê duyệt đối sách cố hữu</th>
+                <td>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>@pbNDNPDDS: @Model.NguoiDNPheDuyetDS</span>
+                        @if ((string)Session["ADID"] == Model.NguoiDamNhiemChinh || (string)Session["ADID"] == Model.NguoiDNPheDuyetDS)
+                        {
+                            <button type="button" style="background-color:transparent;border:none;" data-toggle="modal" data-target="#ModalPDDS"><i class="fa fa-edit"></i></button>
+                        }
+                        <div class="modal fade" id="ModalPDDS" role="dialog" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <form action="@Url.Action("UpdateDN","DetailLoi")">
+                                        <div class="modal-header" style=" background-color: #0063cc; color: white;">
+                                            <h5 class="modal-title">Thay đổi người đảm nhiệm phê duyệt đối sách cố hữu</h5>
+                                            <button type="button" data-dismiss="modal" class="close" style="color:white;">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="tab">
+                                                <tr>
+                                                    <th>Mã lỗi</th>
+                                                    <td>
+                                                        <input type="text" name="maloi" readonly value="@Model.Maloi" class="form-control" style=" max-width: 100%; width: 100%;" />
+                                                        <input type="text" name="step" hidden value="Người đảm nhiệm phê duyệt đối sách cố hữu" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Người đảm nhiệm phê duyệt đối sách cố hữu</th>
+                                                    <td>
+                                                        <div style="display:flex;">
+                                                            <select name="PhongBanPDDS" id="PhongBanPDDS" class="form-control" style="width: fit-content; margin-right: 5px; max-width: 100%;">
+                                                                @foreach (var item in lisPB)
+                                                                {
+                                                                    <option value="@item">@item</option>
+                                                                }
+                                                            </select>
+                                                            <select name="NguoiDN" id="NguoiDNPDDS" class="form-control" style="width: fit-content; max-width: 100%;">
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Người cập nhật</th>
+                                                    <td>
+                                                        <input type="text" name="NguoiUpdateDN" readonly value="@Session["ADID"]" class="form-control" style=" max-width: 100%; width: 100%;" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                <tr>
+                                                    <th>Lý do</th>
+                                                    <td>
+                                                        <textarea name="LyDo" placeholder="Nhập lý do" style="max-width: 100%; width: 100%; "></textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" data-dismiss="modal" class="btn btn-secondary">Đóng</button>
+                                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>Người đảm nhiệm ghi nhập hiệu quả đối sách</th>
+                <td>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>@pbNDNGNHQ: @Model.NguoiDNGhiNhapHQ</span>
+                        @if ((string)Session["ADID"] == Model.NguoiDamNhiemChinh || (string)Session["ADID"] == Model.NguoiDNGhiNhapHQ)
+                        {
+                            <button type="button" style="background-color:transparent;border:none;" data-toggle="modal" data-target="#ModalHQDS"><i class="fa fa-edit"></i></button>
+                        }
+                        <div class="modal fade" role="dialog" id="ModalHQDS" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <form action="@Url.Action("UpdateDN","DetailLoi")">
+                                        <div class="modal-header" style=" background-color: #0063cc; color: white;">
+                                            <h5 class="modal-title">Thay đổi người đảm nhiệm ghi nhập hiệu quả đối sách</h5>
+                                            <button type="button" data-dismiss="modal" class="close" style="color:white">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="tab">
+                                                <tr>
+                                                <tr>
+                                                    <th>Mã lỗi</th>
+                                                    <td>
+                                                        <input type="text" name="maloi" readonly value="@Model.Maloi" class="form-control" style=" max-width: 100%; width: 100%;" />
+                                                        <input type="text" name="step" hidden value="Người đảm nhiệm ghi nhập hiệu quả đối sách" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Người đảm nhiệm ghi nhập hiệu quả đối sách</th>
+                                                    <td>
+                                                        <div style="display:flex;">
+                                                            <select name="PhongBanHQDS" id="PhongBanHQDS" class="form-control" style="width: fit-content; margin-right: 5px; max-width: 100%;">
+                                                                @foreach (var item in lisPB)
+                                                                {
+                                                                    <option value="@item">@item</option>
+                                                                }
+                                                            </select>
+                                                            <select name="NguoiDN" id="NguoiDNHQDS" class="form-control" style="width: fit-content; max-width: 100%;">
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Người cập nhật</th>
+                                                    <td>
+                                                        <input type="text" name="NguoiUpdateDN" readonly value="@Session["ADID"]" class="form-control" style=" max-width: 100%; width: 100%;" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                <tr>
+                                                    <th>Lý do</th>
+                                                    <td>
+                                                        <textarea name="LyDo" placeholder="Nhập lý do" style="max-width: 100%; width: 100%;"></textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" data-dismiss="modal" class="btn btn-secondary">Đóng</button>
+                                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>Người đảm nhiệm phê duyệt hiệu quả đối sách</th>
+                <td>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>@pbNDNPDHQ: @Model.NguoiDNPheDuyetHQ</span>
+                        @if ((string)Session["ADID"] == Model.NguoiDamNhiemChinh || (string)Session["ADID"] == Model.NguoiDNPheDuyetHQ)
+                        {
+                            <button type="button" style="background-color:transparent;border:none;" data-toggle="modal" data-target="#ModalPDHQ"><i class="fa fa-edit"></i></button>
+                        }
+                        <div class="modal fade" role="dialog" id="ModalPDHQ" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <form action="@Url.Action("UpdateDN","DetailLoi")">
+                                        <div class="modal-header" style=" background-color: #0063cc; color: white;">
+                                            <h5 class="modal-title">Thay đổi người đảm nhiệm phê duyệt hiệu quả đối sách</h5>
+                                            <button type="button" data-dismiss="modal" class="close" style="color:white">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="tab">
+                                                <tr>
+                                                    <th>Mã lỗi</th>
+                                                    <td>
+                                                        <input type="text" name="maloi" readonly value="@Model.Maloi" class="form-control" style=" max-width: 100%; width: 100%;" />
+                                                        <input type="text" name="step" hidden value="Người đảm nhiệm phê duyệt hiệu quả đối sách" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Người đảm nhiệm ghi nhập hiệu quả đối sách</th>
+                                                    <td>
+                                                        <div style="display:flex;">
+                                                            <select name="PhongBanPDHQ" id="PhongBanPDHQ" class="form-control" style="width: fit-content; margin-right: 5px; max-width: 100%;">
+                                                                @foreach (var item in lisPB)
+                                                                {
+                                                                    <option value="@item">@item</option>
+                                                                }
+                                                            </select>
+                                                            <select name="NguoiDN" id="NguoiDNPDHQ" class="form-control" style="width: fit-content; max-width: 100%;">
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Người cập nhật</th>
+                                                    <td>
+                                                        <input type="text" name="NguoiUpdateDN" readonly value="@Session["ADID"]" class="form-control" style=" max-width: 100%; width: 100%;" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                <tr>
+                                                    <th>Lý do</th>
+                                                    <td>
+                                                        <textarea name="LyDo" placeholder="Nhập lý do" style="max-width: 100%; width: 100%;"></textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" data-dismiss="modal" class="btn btn-secondary">Đóng</button>
+                                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div style=" margin: 10px;">
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid black;padding:5px 0; margin-top:10px;">
+        <h4>1. Hiện tượng</h4>
+        <div style="display:flex;">
+            @if (((string)Session["ADID"] == Model.NguoiDamNhiemChinh || (string)Session["ADID"] == Model.NguoiPhatHanh) && Model.TienDo == "Đang điều tra nguyên nhân")
+            {
+                <a href="@Url.Action("Edit", "HienTuong", new {id = HT.ID})" class="btn" style="background-color:transparent;border:none;margin-right:5px;"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+            }
+            <a href="@Url.Action("LichSuHT", "HienTuong", new {maloi = HT.MaLoi})" class="btn" style="background-color:transparent;border:none;margin-right:5px;"><i class="fa fa-clock-o"></i>&nbsp;Lịch sử</a>
+        </div>
+    </div>
+    <div style="display:flex;margin:0 10px;">
+        <div style="width:60%;margin-right:3%;display:block;">
+            <h6>Chi tiết tiếng Việt</h6>
+            <textarea id="HienTuongTV" style="max-width: 100%; width: 100%; white-space: pre-wrap; overflow: hidden; resize: none; display: block;" readonly>@HT.DetailTV</textarea>
+            <h6>Chi tiết tiếng Nhật</h6>
+            <textarea id="HienTuongTN" style="max-width: 100%; width: 100%; white-space: pre-wrap; overflow: hidden; resize: none;" readonly>@HT.DetailTN</textarea>
+        </div>
+        <div style="width:40%">
+            <ul>
+                <li>Người phát hành - <span style="color: royalblue;">@Model.NguoiPhatHanh</span></li>
+                <li>Phân cấp - <span style="color: royalblue;">@Model.PhanCap</span></li>
+                <li>Phân loại hiện tượng - <span style="color: royalblue;">@Model.PhanLoaiHT_Lon/ @Model.PhanLoaiHT_Nho</span></li>
+                <li>Người xác nhận hiện tượng - <span style="color: royalblue;">@Model.NguoiXNHTLoi</span></li>
+                <li>Thời gian cập nhật - <span style="color: royalblue;">@HT.TimeUpdate</span></li>
+                <li>Người cập nhật - <span style="color: royalblue;">@HT.NguoiUpdate</span></li>
+                <li>Số cùng sự kiện - <span style="color: royalblue;">@HT.SoCungSuKien</span></li>
+                <li>Trạng thái - <span style="color: royalblue;">@HT.TrangThai</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div style=" margin: 10px;">
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid black;padding:5px 0; margin-top:10px;">
+        <h4>2. Nguyên nhân</h4>
+        <div style="display:flex;">
+            @if (((string)Session["ADID"] == Model.NguoiDamNhiemChinh || (string)Session["ADID"] == Model.NguoiDNGhiNhapNN) && Model.TienDo == "Đang điều tra nguyên nhân")
+            {
+                <a href="@Url.Action("Edit", "NguyenNhan", new {maLoi = view_NN.MaLoi})" class="btn" style="background-color:transparent;border:none;margin-right:5px;"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+            }
+            <a href="@Url.Action("LichSuNN", "NguyenNhan", new {maLoi = view_NN.MaLoi})" class="btn" style="background-color:transparent;border:none;margin-right:5px;"><i class="fa fa-clock-o"></i>&nbsp;Lịch sử</a>
+        </div>
+    </div>
+    <div style="display:flex;margin:0 10px;">
+        <div style="width:60%;margin-right:3%;">
+            <h6>Chi tiết tiếng Việt</h6>
+            <textarea id="NguyenNhanTV" style="max-width: 100%; width: 100%; white-space: pre-wrap; overflow: hidden; resize: none;" readonly>@view_NN.ChiTietTV</textarea>
+            <h6>Chi tiết tiếng Nhật</h6>
+            <textarea id="NguyenNhanTN" style="max-width: 100%; width: 100%; white-space: pre-wrap; overflow: hidden; resize: none;" readonly>@view_NN.ChiTietTN</textarea>
+        </div>
+
+        <div style="width:40%">
+            <ul>
+                <li>Phân loại nguyên nhân - <span style="color: royalblue;">@view_NN.PhanLoaiNN_Lon/ @view_NN.PhanLoaiNN_Nho</span></li>
+                <li>Người đảm nhiệm ghi nhập nguyên nhân - <span style="color: royalblue;">@pbNDNNN: @Model.NguoiDNGhiNhapNN</span></li>
+                <li>Thời gian cập nhật - <span style="color: royalblue;">@view_NN.TimeUpdate</span></li>
+                <li>Người cập nhật - <span style="color: royalblue;">@view_NN.NguoiUpdate</span></li>
+                <li>Số cùng sự kiện - <span style="color: royalblue;">@view_NN.SoCungSuKien</span></li>
+                <li>Trạng thái - <span style="color: royalblue;">@view_NN.TrangThai</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div style=" margin: 10px;">
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid black;padding:5px 0; margin-top:10px;">
+        <h4>3. Đối sách tạm thời</h4>
+        <div style="display:flex;">
+            @if (((string)Session["ADID"] == Model.NguoiDamNhiemChinh || (string)Session["ADID"] == Model.NguoiDNGhiNhapDSTT) && Model.TienDo == "Hoàn thành điều tra nguyên nhân")
+            {
+                <a href="@Url.Action("Edit", "DoiSachTamThoi", new {maLoi = view_DSTT.MaLoi})" class="btn" style="background-color:transparent;border:none;margin-right:5px;"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+            }
+            <a href="@Url.Action("LichSuDSTT", "DoiSachTamThoi", new {maLoi = view_DSTT.MaLoi})" class="btn" style="background-color:transparent;border:none;margin-right:5px;"><i class="fa fa-clock-o"></i>&nbsp;Lịch sử</a>
+        </div>
+    </div>
+    <div style="display:flex;margin:0 10px;">
+        <div style="width:60%;margin-right:3%;">
+            <h6>Chi tiết tiếng Việt</h6>
+            <textarea id="DSTTTV" style="max-width: 100%; width: 100%; white-space: pre-wrap; overflow: hidden; resize: none;" readonly>@view_DSTT.ChiTietTV</textarea>
+            <h6>Chi tiết tiếng Nhật</h6>
+            <textarea id="DSTTTN" style="max-width: 100%; width: 100%; white-space: pre-wrap; overflow: hidden; resize: none;" readonly>@view_DSTT.ChiTietTN</textarea>
+        </div>
+
+        <div style="width:40%">
+            <ul>
+                <li>Thời gian bắt đầu - <span style="color: royalblue;">@view_DSTT.TimeStart</span></li>
+                <li>Phân loại đối sách - <span style="color: royalblue;">@view_DSTT.PhanLoaiDSTT_Lon/ @view_DSTT.PhanLoaiDSTT_Nho</span></li>
+                <li>Người thực hiện đối sách - <span style="color: royalblue;">@view_DSTT.NguoiTH</span></li>
+                <li>Người đảm nhiệm ghi nhập đối sách tạm thời - <span style="color: royalblue;">@pbNDNDSTT: @Model.NguoiDNGhiNhapDSTT</span></li>
+                <li>Thời gian cập nhật - <span style="color: royalblue;">@view_DSTT.TimeUpdate</span></li>
+                <li>Người cập nhật - <span style="color: royalblue;">@view_DSTT.NguoiUpdate</span></li>
+                <li>Số cùng sự kiện - <span style="color: royalblue;">@view_DSTT.SoCungSuKien</span></li>
+                <li>Trạng thái - <span style="color: royalblue;">@view_DSTT.TrangThai</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div style=" margin: 10px;">
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid black;padding:5px 0; margin-top:10px;">
+        <h4>4. Đối sách cố hữu</h4>
+        <div style="display:flex;">
+            @if ((string)Session["ADID"] == Model.NguoiDNPheDuyetDS && view_DSCH.TrangThai == "Chờ phê duyệt")
+            {
+                <button type="button" data-toggle="modal" data-target="#ModalPheDNG" class="btn" style="background-color:red;border:none;margin-right:5px;"><i class="fa fa-pen-nib"></i>&nbsp;Phê duyệt NG</button>
+                <div class="modal fade" id="ModalPheDNG" role="dialog" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form action="@Url.Action("PheDuyetNG", "DoiSachCoHuu", new {maloi = view_DSCH.MaLoi})">
+                                <div class="modal-header" style=" background-color: #0063cc; color: white;">
+                                    <h4>Phán định NG</h4>
+                                    <button type="button" class="close" data-dismiss="modal" style="color:white;">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="tab">
+                                        <tr>
+                                            <th>Mã lỗi</th>
+                                            <td>
+                                                <input type="text" name="MaLoi" value="@Model.Maloi" style=" width: 100%; max-width: 100%; padding: 5px;" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Lý do</th>
+                                            <td>
+                                                <textarea placeholder="Nhập lý do" name="LyDo" style="max-width: 100%; width: 100%;white-space:pre-wrap;"></textarea>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                    <button type="submit" class="btn btn-danger">Phán định NG</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <a href="@Url.Action("PheDuyetOK", "DoiSachCoHuu", new {maloi = view_DSCH.MaLoi})" class="btn" style="background-color:lightgreen;border:none;margin-right:5px;"><i class="fa fa-pen-nib"></i>&nbsp;Phê duyệt OK</a>
+            }
+            @if (((string)Session["ADID"] == Model.NguoiDamNhiemChinh || (string)Session["ADID"] == Model.NguoiDNGhiNhapDSCH) && Model.TienDo == "Hoàn thành đối sách tạm thời")
+            {
+                <a href="@Url.Action("Edit", "DoiSachCoHuu", new {maloi = view_DSCH.MaLoi})" class="btn" style="background-color:transparent;border:none;margin-right:5px;"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+            }
+            <a href="@Url.Action("LichSuDSCH", "DoiSachCoHuu", new {maloi = view_DSCH.MaLoi})" class="btn" style="background-color:transparent;border:none;margin-right:5px;"><i class="fa fa-clock-o"></i>&nbsp;Lịch sử</a>
+        </div>
+    </div>
+    <div style="display:flex;margin:0 10px;">
+        <div style="width:60%;margin-right:3%;">
+            <h6>Chi tiết tiếng Việt</h6>
+            <textarea id="DSCHTV" style="max-width: 100%; width: 100%; white-space: pre-wrap; overflow: hidden; resize: none;" readonly>@view_DSCH.ChiTietTV</textarea>
+            <h6>Chi tiết tiếng Nhật</h6>
+            <textarea id="DSCHTN" style="max-width: 100%; width: 100%; white-space: pre-wrap; overflow: hidden; resize: none;" readonly>@view_DSCH.ChiTietTN</textarea>
+        </div>
+
+        <div style="width:40%">
+            <ul>
+                <li>Thời gian bắt đầu - <span style="color: royalblue;">@view_DSCH.TimeStart</span></li>
+                <li>Phân loại đối sách - <span style="color: royalblue;">@view_DSCH.PhanLoaiDSCH_Lon/ @view_DSCH.PhanLoaiDSCH_Nho</span></li>
+                <li>Người thực hiện đối sách - <span style="color: royalblue;">@view_DSCH.NguoiTH</span></li>
+                <li>Người đảm nhiệm ghi nhập đối sách cố hữu - <span style="color: royalblue;">@pbNDNGNDS: @Model.NguoiDNGhiNhapDSCH</span></li>
+                <li>Người đảm nhiệm phê duyệt đối sách - <span style="color: royalblue;">@pbNDNPDDS: @Model.NguoiDNPheDuyetDS</span></li>
+                <li>Thời gian cập nhật - <span style="color: royalblue;">@view_DSCH.TimeUpDate</span></li>
+                <li>Người cập nhật - <span style="color: royalblue;">@view_DSCH.NguoiUpDate</span></li>
+                <li>Số cùng sự kiện - <span style="color: royalblue;">@view_DSCH.SoCungSuKien</span></li>
+                <li>Trạng thái - <span style="color: royalblue;">@view_DSCH.TrangThai</span></li>
+            </ul>
+            @if (view_DSCH.TrangThai == "Hoàn thành")
+            {
+                <span style="color: red; padding: 5px; border: 2px solid red; margin: 0 25px;">担当: @HotenNDNPDDS</span>
+            }
+        </div>
+    </div>
+</div>
+
+<div style=" margin: 10px;">
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid black;padding:5px 0; margin-top:10px;">
+        <h4>5. Hiệu quả đối sách</h4>
+        <div style="display:flex;">
+            @if ((string)Session["ADID"] == Model.NguoiDNPheDuyetHQ && view_HS.TrangThai == "Chờ phê duyệt")
+            {
+                <button type="button" data-toggle="modal" data-target="#ModalPDNG" class="btn" style="background-color:red;border:none;margin-right:5px;"><i class="fa fa-pen-nib"></i>&nbsp;Phê duyệt NG</button>
+                <div class="modal fade" id="ModalPDNG" role="dialog" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form action="@Url.Action("PheDuyetNG", "HieuQua", new {maloi = view_HS.MaLoi})">
+                                <div class="modal-header" style=" background-color: #0063cc; color: white;">
+                                    <h4>Phán định NG</h4>
+                                    <button class="close" data-dismiss="modal" style="color:white">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="tab">
+                                        <tr>
+                                            <th>Mã lỗi</th>
+                                            <td>
+                                                <input type="text" name="MaLoi" readonly style="width:100%;max-width:100%;padding:5px;" value="@view_HS.MaLoi" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Lý do</th>
+                                            <td>
+                                                <textarea placeholder="Nhập lý do" name="LyDo" style="white-space:pre-wrap;width:100%;max-width:100%;"></textarea>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn bg-secondary" data-dismiss="modal">Hủy</button>
+                                    <button type="submit" class="btn btn-danger">Phán định NG</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("PheDuyetOK", "HieuQua", new {maloi = view_HS.MaLoi})" class="btn" style="background-color:lightgreen;border:none;margin-right:5px;"><i class="fa fa-pen-nib"></i>&nbsp;Phê duyệt Ok</a>
+            }
+            @if (Model.TienDo == "Hoàn thành đối sách cố hữu" && ((string)Session["ADID"] == Model.NguoiDamNhiemChinh || (string)Session["ADID"] == Model.NguoiDNGhiNhapHQ))
+            {
+                <a href="@Url.Action("Edit", "HieuQua", new {maloi = view_HS.MaLoi})" class="btn" style="background-color:transparent;border:none;margin-right:5px;"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+            }
+            <a href="@Url.Action("LichSuHQ", "HieuQua", new {maloi = view_HS.MaLoi})" class="btn" style="background-color:transparent;border:none;margin-right:5px;"><i class="fa fa-clock-o"></i>&nbsp;Lịch sử</a>
+        </div>
+    </div>
+    <div style="display:flex;margin:0 10px;">
+        <div style="width:60%;margin-right:3%;">
+            <h6>Chi tiết tiếng Việt</h6>
+            <textarea id="HQDSTV" style="max-width: 100%; width: 100%; white-space: pre-wrap; overflow: hidden; resize: none;" readonly>@view_HS.ChiTietTV</textarea>
+            <h6>Chi tiết tiếng Nhật</h6>
+            <textarea id="HQDSTN" style="max-width: 100%; width: 100%; white-space: pre-wrap; overflow: hidden; resize: none;" readonly>@view_HS.ChiTietTN</textarea>
+        </div>
+
+        <div style="width:40%">
+            <ul>
+                <li>Thời hạn hoàn thành hiệu quả đối sách - <span style="color: royalblue;">@view_HS.TimeDoneHQ</span></li>
+                <li>Người xác nhận - <span style="color: royalblue;">@view_HS.NguoiXN</span></li>
+                <li>Người ghi nhập hiệu quả đối sách - <span style="color: royalblue;">@pbNDNGNHQ: @Model.NguoiDNGhiNhapHQ</span></li>
+                <li>Người phê duyệt - <span style="color: royalblue;">@pbNDNPDHQ: @Model.NguoiDNPheDuyetDS</span></li>
+                <li>Thời gian cập nhật - <span style="color: royalblue;">@view_HS.TimeUpdate</span></li>
+                <li>Người cập nhật - <span style="color: royalblue;">@view_HS.NguoiUpdate</span></li>
+                <li>Số cùng sự kiện - <span style="color: royalblue;">@view_HS.SoCungSuKien</span></li>
+                <li>Trạng thái - <span style="color: royalblue;">@view_HS.TrangThai</span></li>
+            </ul>
+            @if (view_HS.TrangThai == "Hoàn thành")
+            {
+                <span style="color: red; padding: 5px; border: 2px solid red; margin: 0 25px;">担当: @hotenNDNPDHQ</span>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .tab {
+        width: 100%;
+    }
+
+        .tab th {
+            color: darkcyan;
+            height: 50px;
+        }
+</style>
+<script>
+
+
+    function autoResize(textarea) {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    }
+
+    const HienTuongTV = document.getElementById('HienTuongTV');
+    const HienTuongTN = document.getElementById('HienTuongTN');
+
+    HienTuongTV.addEventListener('input', () => autoResize(HienTuongTV));
+    HienTuongTN.addEventListener('input', () => autoResize(HienTuongTN));
+
+    // Gọi hàm lần đầu để thiết lập chiều cao ban đầu nếu có nội dung
+    autoResize(HienTuongTV);
+    autoResize(HienTuongTN);
+
+    const NguyenNhanTV = document.getElementById('NguyenNhanTV');
+    const NguyenNhanTN = document.getElementById('NguyenNhanTN');
+
+    NguyenNhanTV.addEventListener('input', () => autoResize(NguyenNhanTV));
+    NguyenNhanTN.addEventListener('input', () => autoResize(NguyenNhanTN));
+
+    // Gọi hàm lần đầu để thiết lập chiều cao ban đầu nếu có nội dung
+    autoResize(NguyenNhanTV);
+    autoResize(NguyenNhanTN);
+
+
+    const DSTTTV = document.getElementById('DSTTTV');
+    const DSTTTN = document.getElementById('DSTTTN');
+
+    DSTTTV.addEventListener('input', () => autoResize(DSTTTV));
+    DSTTTN.addEventListener('input', () => autoResize(DSTTTN));
+
+    // Gọi hàm lần đầu để thiết lập chiều cao ban đầu nếu có nội dung
+    autoResize(DSTTTV);
+    autoResize(DSTTTN);
+
+
+    const DSCHTV = document.getElementById('DSCHTV');
+    const DSCHTN = document.getElementById('DSCHTN');
+
+    DSCHTV.addEventListener('input', () => autoResize(DSCHTV));
+    DSCHTN.addEventListener('input', () => autoResize(DSCHTN));
+
+    // Gọi hàm lần đầu để thiết lập chiều cao ban đầu nếu có nội dung
+    autoResize(DSCHTV);
+    autoResize(DSCHTN);
+
+
+    const HQDSTV = document.getElementById('HQDSTV');
+    const HQDSTN = document.getElementById('HQDSTN');
+
+    HQDSTV.addEventListener('input', () => autoResize(HQDSTV));
+    HQDSTN.addEventListener('input', () => autoResize(HQDSTN));
+
+    // Gọi hàm lần đầu để thiết lập chiều cao ban đầu nếu có nội dung
+    autoResize(HQDSTV);
+    autoResize(HQDSTN);
+
+    $(document).ready(function() {
+
+        function loadEmailsByPhongBan(maPB,selectedID,selectedEmail) {
+    if (maPB) {
+        $.ajax({
+            url: '@Url.Action("Email", "DetailLoi")',
+            type: 'GET',
+            data: { MaPB: maPB },
+            success: function (response) {
+                if (response.success) {
+                    var emailSelect = $(selectedID);
+                    emailSelect.empty();  // đúng vì đang dùng jQuery
+                    emailSelect.append('<option value="">-Chọn-</option>');
+
+                    $.each(response.emails, function (index, email) {
+                        var selectedAttr = (email === selectedEmail) ? 'selected' : '';
+                        emailSelect.append('<option value="' + email + '" ' + selectedAttr + '>' + email + '</option>');
+                    });
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Lỗi khi gọi AJAX:", error);
+            }
+        });
+    }
+        }
+
+        function loadEmailByChangePB(maPB,selectedID) {
+            if (maPB) {
+                // If a department is selected, make the AJAX call to get the emails
+                $.ajax({
+                    url: '@Url.Action("Email", "DetailLoi")',  // Replace with your actual controller action name and controller
+                    type: 'GET',
+                    data: { MaPB: maPB },
+                    success: function (response) {
+                        if (response.success) {
+                            var emails = response.emails;
+                            var emailSelect = $(selectedID);
+                            emailSelect.empty();  // Clear the existing options
+                            emailSelect.append('<option value="">-Chọn-</option>');  // Reset to default option
+
+                            // Append each email as an option to the email dropdown
+                            $.each(emails, function (index, email) {
+                                emailSelect.append('<option value="' + email + '">' + email + '</option>');
+                            });
+                        }
+                    }
+                });
+            }
+        }
+                function loadEmailsPDByPhongBan(maPB,selectedID,selectedEmail) {
+    if (maPB) {
+        $.ajax({
+            url: '@Url.Action("EmailPD", "DetailLoi")',
+            type: 'GET',
+            data: { MaPB: maPB },
+            success: function (response) {
+                if (response.success) {
+                    var emailSelect = $(selectedID);
+                    emailSelect.empty();  // đúng vì đang dùng jQuery
+                    emailSelect.append('<option value="">-Chọn-</option>');
+
+                    $.each(response.emails, function (index, email) {
+                        var selectedAttr = (email === selectedEmail) ? 'selected' : '';
+                        emailSelect.append('<option value="' + email + '" ' + selectedAttr + '>' + email + '</option>');
+                    });
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Lỗi khi gọi AJAX:", error);
+            }
+        });
+    }
+        }
+
+        function loadEmailPDByChangePB(maPB,selectedID) {
+            if (maPB) {
+                // If a department is selected, make the AJAX call to get the emails
+                $.ajax({
+                    url: '@Url.Action("EmailPD", "DetailLoi")',  // Replace with your actual controller action name and controller
+                    type: 'GET',
+                    data: { MaPB: maPB },
+                    success: function (response) {
+                        if (response.success) {
+                            var emails = response.emails;
+                            var emailSelect = $(selectedID);
+                            emailSelect.empty();  // Clear the existing options
+                            emailSelect.append('<option value="">-Chọn-</option>');  // Reset to default option
+
+                            // Append each email as an option to the email dropdown
+                            $.each(emails, function (index, email) {
+                                emailSelect.append('<option value="' + email + '">' + email + '</option>');
+                            });
+                        }
+                    }
+                });
+            }
+        }
+
+        var selectPBNDN = document.getElementById("PhongBanDNC");
+        selectPBNDN.value = "@pbNDNC";
+        loadEmailsByPhongBan("@pbNDNC", "#NguoiDNC", "@Html.Raw(emailNDNC)");
+        $('#PhongBanDNC').change(function () {
+            var maPB = $(this).val();
+            loadEmailByChangePB(maPB, "#NguoiDNC");
+        });
+        var selectPBNDNN = document.getElementById("PhongBanNN");
+        selectPBNDNN.value = "@pbNDNNN";
+        loadEmailsByPhongBan("@pbNDNNN", "#NguoiDNNN", "@Html.Raw(emailNDNNN)");
+        $('#PhongBanNN').change(function () {
+            var maPB = $(this).val();
+            loadEmailByChangePB(maPB, "#NguoiDNNN");
+        });
+        var selectPBNDTT = document.getElementById("PhongBanDSTT");
+        selectPBNDTT.value = "@pbNDNDSTT";
+        loadEmailsByPhongBan("@pbNDNDSTT", "#NguoiDNDSTT", "@Html.Raw(emailNDNDSTT)");
+        $('#PhongBanDSTT').change(function () {
+            var maPB = $(this).val();
+            loadEmailByChangePB(maPB, "#NguoiDNDSTT");
+        });
+        var selectPBNDDS = document.getElementById("PhongBanDSCH");
+        selectPBNDDS.value = "@pbNDNGNDS";
+        loadEmailsByPhongBan("@pbNDNGNDS", "#NGuoiDNDSCH", "@Html.Raw(emailNDNGNDS)");
+        $('#PhongBanDSCH').change(function () {
+            var maPB = $(this).val();
+            loadEmailByChangePB(maPB, "#NGuoiDNDSCH");
+        });
+        var selectPBNDTT = document.getElementById("PhongBanPDDS");
+        selectPBNDTT.value = "@pbNDNPDDS";
+        loadEmailsPDByPhongBan("@pbNDNPDDS", "#NguoiDNPDDS", "@Html.Raw(emailNDNPDDS)");
+        $('#PhongBanPDDS').change(function () {
+            var maPB = $(this).val();
+            loadEmailPDByChangePB(maPB, "#NguoiDNPDDS");
+        });
+        var selectPBNDTT = document.getElementById("PhongBanHQDS");
+        selectPBNDTT.value = "@pbNDNGNHQ";
+        loadEmailsByPhongBan("@pbNDNGNHQ", "#NguoiDNHQDS", "@Html.Raw(emailNDNGNHQ)");
+        $('#PhongBanHQDS').change(function () {
+            var maPB = $(this).val();
+            loadEmailByChangePB(maPB, "#NguoiDNHQDS");
+        });
+        var selectPBNDTT = document.getElementById("PhongBanPDHQ");
+        selectPBNDTT.value = "@pbNDNPDHQ";
+        loadEmailsPDByPhongBan("@pbNDNPDHQ", "#NguoiDNPDHQ", "@Html.Raw(emailNDNPDHQ)");
+        $('#PhongBanPDHQ').change(function () {
+            var maPB = $(this).val();
+            loadEmailPDByChangePB(maPB, "#NguoiDNPDHQ");
+        });
+        var selectedTD = document.getElementById("TienDo");
+        selectedTD.value = "@Html.Raw(Model.TienDo)";
+    });
+
+
+</script>

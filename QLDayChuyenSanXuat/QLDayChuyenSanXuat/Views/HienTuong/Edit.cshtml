@@ -1,0 +1,488 @@
+﻿@model QLDayChuyenSanXuat.Models.tbl_HienTuong
+@using QLDayChuyenSanXuat.Models
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    QLDayChuyenSX db = new QLDayChuyenSX();
+    var lisModel = db.tbl_Model.Select(x => x.MaModel).ToList();
+    var lisLoaiMay = db.tbl_LoaiMay.Select(c => c.MaLoaiMay).ToList();
+    var listLoi = db.tbl_DetailLoi.Select(x => x.Maloi).ToList();
+    var ID = db.tbl_DetailLoi.Where(x => x.Maloi == Model.MaLoi).FirstOrDefault().ID;
+}
+@using (Html.BeginForm("Edit", "HienTuong", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="conten">
+        <div class="header" style="display:flex;justify-content:space-between;">
+            <h5 style="color: #006699; ">Ghi nhập thông tin hiện tượng lỗi @Model.MaLoi</h5>
+            <button type="submit" class="btn" style="border: 1px solid; background-color: #0088cc; color: white;"> Cập nhật hiện tượng</button>
+        </div>
+        <div style="display:flex;">
+            <div class="left-column">
+                <div class="row_PHL">
+                    <span class="coll_PHL">Mã lỗi</span>
+                    <input readonly class="col2" name="MaLoi" value="@Model.MaLoi" />
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Phân cấp <span style="color:red;">*</span> </span>
+                    <select class="col2" id="PhanCap" name="PhanCap" required>
+                        <option value="">-Chọn-</option>
+                        <option>Nhẹ dừng 1 chuyền</option>
+                        <option>Nhẹ dừng nhiều chuyền</option>
+                        <option>Nặng dừng nhiều chuyền</option>
+                    </select>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Model <span style="color:red;">*</span></span>
+                    <select class="col2" id="Model" name="Model" required>
+                        <option value="">-Chọn-</option>
+                        @foreach (var item in lisModel)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Loại máy <span style="color:red;">*</span></span>
+                    <select class="col2" id="LoaiMay" name="LoaiMay" required>
+                        <option value="">-Chọn-</option>
+                        @foreach (var item in lisLoaiMay)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Tiêu đề <span style="color:red;">*</span></span>
+                    <div class="col2">
+                        <div class="row_PHL">
+                            <span class="coll_PHL">Tiếng Nhật</span>
+                            <input class="col2" type="text" name="TieuDeTN" value="@Model.TieuDeTN" />
+                        </div>
+                        <div class="row_PHL">
+                            <span class="coll_PHL">Tiếng Việt <span style="color:red;">*</span></span>
+                            <input required class="col2" type="text" name="TieuDeTV" value="@Model.TieuDeTV" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Thời điểm phát sinh <span style="color:red;">*</span></span>
+                    <input required class="col2" type="datetime-local" name="ThoiDiemPhatSinh" value="@(Convert.ToDateTime(Model.ThoiDiemPhatSinh).ToString("yyyy-MM-ddTHH:mm"))" />
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Thời điểm bắt đầu lại <span style="color:red;">*</span></span>
+                    <input required class="col2" type="datetime-local" name="ThoiDiemBatDauLai" value="@(Convert.ToDateTime(Model.ThoiDiemBatDauLai).ToString("yyyy-MM-ddTHH:mm"))" />
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Phân loại hiện tượng <span style="color:red;">*</span></span>
+                    <div style="width:70%;">
+                        <select required style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 10px; box-sizing: border-box; " id="PhanLoaiHT_Lon" name="PhanLoaiHT_Lon">
+                            <option value="">-Chọn-</option>
+                            <option value="Thiết bị">Thiết bị</option>
+                            <option value="Sản xuất">Sản xuất</option>
+                            <option value="Linh kiện">Linh kiện</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <select required style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; " id="PhanLoaiHT_Nho" name="PhanLoaiHT_Nho">
+                        </select>
+                    </div>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Người xác nhận hiện tượng <span style="color:red;">*</span></span>
+                    <div style="width:70%;">
+                        <input required type="text" style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; " name="NguoiXNHTLoi" value="@Model.NguoiXNHTLoi" />
+                        <p style="color:red;font-size:13px;">Nhập theo mẫu: Mã Phòng ban _ Họ tên. VD: RD&PE_Nguyễn Thị Cẩm Ly</p>
+                    </div>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Người cập nhật</span>
+                    <input readonly class="col2" name="NguoiUpdate" value="@Session["ADID"]" />
+                </div>
+            </div>
+            <div class="right-column">
+                <div class="row_PHL">
+                    <span class="coll_PHL">Chi tiết tiếng Việt <span style="color:red;">*</span></span>
+                    <textarea required class="col2" name="DetailTV" id="ChiTietTV" style="white-space: pre-wrap; overflow: hidden; resize: none;">@Model.DetailTV</textarea>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Chi tiết tiếng Nhật </span>
+                    <textarea class="col2" name="DetailTN" id="ChiTietTN" style="white-space: pre-wrap; overflow: hidden; resize: none;">@Model.DetailTN</textarea>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">File đính kèm</span>
+                    <div class="file-upload col2">
+                        <input type="file" id="fileDinhKem" name="files" multiple>
+                        <label for="fileDinhKem" class="file-upload-label">Choose File | No file chosen</label>
+                    </div>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Số cùng sự kiện</span>
+                    <select name="SoCungSuKien" class="col2" id="SoCungSK">
+                        <option value="">-Chọn-</option>
+                        @foreach (var item in listLoi)
+                        {
+                            <option value="@item">@item</option>
+                        }
+
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+}
+<div style=" color: cornflowerblue; font-size: large;">
+    &nbsp;&nbsp;<i class="fas fa-arrow-left"></i>&nbsp;<a href="@Url.Action("Details", "DetailLoi", new {id = ID})" style=" color: cornflowerblue;">Back to list</a>
+</div>
+
+<style>
+    .row_PHL {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .coll_PHL {
+        width: 30%;
+        display: block;
+        margin-right: 5px;
+        font-weight: bold;
+        color: black;
+    }
+
+    .col2 {
+        max-width: 70%;
+        width: 70%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .conten {
+        margin: 1% 5%;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+    }
+
+    .header {
+        align-items: center;
+        border-bottom: 1px solid black;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+        background-color: #f9f9f9;
+    }
+
+
+    .left-column, .right-column {
+        width: 50%;
+        padding: 10px;
+        /*flex: 1;*/
+    }
+
+    .left-column {
+        margin-right: 3%;
+    }
+
+
+    .file-upload {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #fff;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+    }
+
+        .file-upload input[type="file"] {
+            position: absolute;
+            font-size: 100px;
+            opacity: 0;
+            right: 0;
+            top: 0;
+        }
+
+    .file-upload-label {
+        flex-grow: 1;
+        padding-right: 10px;
+        color: #777;
+    }
+
+    .footer {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .report-button {
+        background-color: #dc3545; /* Màu đỏ tương tự */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+        .report-button:hover {
+            background-color: #c82333;
+        }
+</style>
+<script>
+    const subOptions = {
+        "Thiết bị": ["Thiết bị"],
+        "Sản xuất": ["Sản xuất"],
+        "Linh kiện": ["Linh kiện khuôn (M)", "Linh kiện điện tử (E)"],
+        "Other": ["Other"]
+    };
+
+    //document.getElementById('PLHienTuongLon').addEventListener('change', function () {
+    //    const selected = this.value;
+    //    const subSelect = document.getElementById('PLHienTuongNho');
+    //    subSelect.innerHTML = '<option value="">-Chọn-</option>';
+
+    //    if (!selected || !subOptions[selected]) return;
+
+    //    subOptions[selected].forEach(function (item) {
+    //        const option = document.createElement('option');
+    //        option.value = item;
+    //        option.textContent = item;
+    //        subSelect.appendChild(option);
+    //    });
+    //});
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const fileInput = document.getElementById('fileDinhKem');
+        const fileLabel = document.querySelector('.file-upload-label');
+
+        fileInput.addEventListener('change', function () {
+            // Xoá nội dung cũ
+            fileLabel.innerHTML = '';
+
+            if (this.files && this.files.length > 0) {
+                const ul = document.createElement('ul');
+
+                Array.from(this.files).forEach(file => {
+                    const li = document.createElement('li');
+                    li.textContent = file.name;
+                    ul.appendChild(li);
+                });
+
+                fileLabel.appendChild(ul);
+            } else {
+                fileLabel.textContent = 'Choose File | No file chosen';
+            }
+        });
+    });
+
+
+    function autoResize(textarea) {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    }
+
+    const ChiTietTV = document.getElementById('ChiTietTV');
+    const ChiTietTN = document.getElementById('ChiTietTN');
+
+    ChiTietTV.addEventListener('input', () => autoResize(ChiTietTV));
+    ChiTietTN.addEventListener('input', () => autoResize(ChiTietTN));
+
+    // Gọi hàm lần đầu để thiết lập chiều cao ban đầu nếu có nội dung
+    autoResize(ChiTietTV);
+    autoResize(ChiTietTN);
+    $(document).ready(function () {
+        var selectedPC = document.getElementById("PhanCap");
+        selectedPC.value = "@Model.PhanCap";
+        var selectedPC = document.getElementById("Model");
+        selectedPC.value = "@Model.Model";
+        var selectedPC = document.getElementById("LoaiMay");
+        selectedPC.value = "@Model.LoaiMay";
+        var selectedPC = document.getElementById("PhanLoaiHT_Lon");
+        selectedPC.value = "@Model.PhanLoaiHT_Lon";
+
+        const selectedPhanLoaiHT_Lon = "@Model.PhanLoaiHT_Lon";
+        const selectedPhanLoaiHT_Nho = "@Model.PhanLoaiHT_Nho"; // nếu bạn có giá trị này trong model
+
+        $('#PhanLoaiHT_Lon').val(selectedPhanLoaiHT_Lon);
+        updateSubOptions(selectedPhanLoaiHT_Lon, selectedPhanLoaiHT_Nho);
+
+        $('#PhanLoaiHT_Lon').on('change', function () {
+            const selectedValue = $(this).val();
+            updateSubOptions(selectedValue, null);
+        });
+
+        function updateSubOptions(selectedMain, selectedSub) {
+            const subSelect = $('#PhanLoaiHT_Nho');
+            subSelect.empty(); // Xóa các option cũ
+
+            if (subOptions[selectedMain]) {
+                subOptions[selectedMain].forEach(function (item) {
+                    const isSelected = item === selectedSub ? 'selected' : '';
+                    subSelect.append(`<option value="${item}" ${isSelected}>${item}</option>`);
+                });
+            } 
+        }
+
+    });
+</script>
+
+
+@*<div class="form-horizontal">
+        <h4>tbl_HienTuong</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaLoi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaLoi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaLoi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhanCap, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhanCap, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhanCap, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Model, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Model, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Model, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LoaiMay, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LoaiMay, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LoaiMay, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TieuDeTV, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TieuDeTV, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TieuDeTV, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TieuDeTN, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TieuDeTN, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TieuDeTN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ThoiDiemPhatSinh, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ThoiDiemPhatSinh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ThoiDiemPhatSinh, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ThoiDiemBatDauLai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ThoiDiemBatDauLai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ThoiDiemBatDauLai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhanLoaiHT_Lon, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhanLoaiHT_Lon, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhanLoaiHT_Lon, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhanLoaiHT_Nho, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhanLoaiHT_Nho, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhanLoaiHT_Nho, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NguoiXNHTLoi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NguoiXNHTLoi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NguoiXNHTLoi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DetailTV, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DetailTV, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DetailTV, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DetailTN, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DetailTN, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DetailTN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LinkDinhKemFile, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LinkDinhKemFile, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LinkDinhKemFile, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SoCungSuKien, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SoCungSuKien, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SoCungSuKien, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TrangThai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TrangThai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NguoiUpdate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NguoiUpdate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NguoiUpdate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TimeUpdate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TimeUpdate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TimeUpdate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>*@

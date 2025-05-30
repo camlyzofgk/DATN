@@ -1,0 +1,590 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\DATN\\QLDayChuyenSanXuat\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\controllers\\detailloicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\controllers\\detailloicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|e:\\datn\\qldaychuyensanxuat\\qldaychuyensanxuat\\views\\detailloi\\bieudothongke.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\detailloi\\bieudothongke.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\controllers\\hientuongcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\controllers\\hientuongcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|e:\\datn\\qldaychuyensanxuat\\qldaychuyensanxuat\\views\\linhkien\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\linhkien\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\detailloi\\bieudotiendo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\detailloi\\bieudotiendo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\detailloi\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\detailloi\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\detailloi\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\detailloi\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\controllers\\qlusercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\controllers\\qlusercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\qluser\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\qluser\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\phieuxuat\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\phieuxuat\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\qluser\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\qluser\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\controllers\\linhkiencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\controllers\\linhkiencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\phieunhap\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\phieunhap\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\linhkien\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\linhkien\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\linhkien\\kiemke.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\linhkien\\kiemke.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\linhkien\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\linhkien\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\linhkien\\dsphieukk.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\linhkien\\dsphieukk.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\phieuxuat\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\phieuxuat\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\controllers\\phieuxuatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\controllers\\phieuxuatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\controllers\\phieunhapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\controllers\\phieunhapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\controllers\\doisachcohuucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\controllers\\doisachcohuucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\controllers\\hieuquacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\controllers\\hieuquacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\controllers\\doisachtamthoicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\controllers\\doisachtamthoicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\controllers\\nguyennhancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\controllers\\nguyennhancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\phieuxuat\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\phieuxuat\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\phieunhap\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\phieunhap\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\phieunhap\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\phieunhap\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\detailloi\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\detailloi\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\detailloi\\lichsu.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\detailloi\\lichsu.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\detailloi\\bangtiendo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\detailloi\\bangtiendo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\qluser\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\qluser\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\views\\detailloi\\caidat.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\views\\detailloi\\caidat.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\models\\tbl_user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\models\\tbl_user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\models\\qldaychuyensx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\models\\qldaychuyensx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|E:\\DATN\\QLDayChuyenSanXuat\\qldaychuyensanxuat\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{DED60E79-8A22-4EAB-959E-9A9133F96996}|QLDayChuyenSanXuat\\QLDayChuyenSanXuat.csproj|solutionrelative:qldaychuyensanxuat\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 100,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 25,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BieuDoThongKe.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\DetailLoi\\BieuDoThongKe.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\DetailLoi\\BieuDoThongKe.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\DetailLoi\\BieuDoThongKe.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\DetailLoi\\BieuDoThongKe.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-30T15:30:41.004Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\QLUser\\Edit.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\QLUser\\Edit.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\QLUser\\Edit.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\QLUser\\Edit.cshtml",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAEsAAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-21T17:44:05.336Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\LinhKien\\Edit.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\LinhKien\\Edit.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\LinhKien\\Edit.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\LinhKien\\Edit.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAwBIAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-21T17:17:06.644Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\PhieuNhap\\Index.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\PhieuNhap\\Index.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\PhieuNhap\\Index.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\PhieuNhap\\Index.cshtml",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAAwCQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-21T17:02:37.028Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\LinhKien\\Create.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\LinhKien\\Create.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\LinhKien\\Create.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\LinhKien\\Create.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-21T16:50:54.582Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "HieuQuaController.cs",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\HieuQuaController.cs",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Controllers\\HieuQuaController.cs",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\HieuQuaController.cs",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Controllers\\HieuQuaController.cs",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAqwKAAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T16:25:24.778Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "DoiSachCoHuuController.cs",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\DoiSachCoHuuController.cs",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Controllers\\DoiSachCoHuuController.cs",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\DoiSachCoHuuController.cs",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Controllers\\DoiSachCoHuuController.cs",
+              "ViewState": "AgIAAJcAAAAAAAAAAAAwwMoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T16:24:12.402Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "DoiSachTamThoiController.cs",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\DoiSachTamThoiController.cs",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Controllers\\DoiSachTamThoiController.cs",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\DoiSachTamThoiController.cs",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Controllers\\DoiSachTamThoiController.cs",
+              "ViewState": "AgIAAGsAAAAAAAAAAAAswIAAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T16:22:00.332Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HienTuongController.cs",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\HienTuongController.cs",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Controllers\\HienTuongController.cs",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\HienTuongController.cs",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Controllers\\HienTuongController.cs",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAswIQAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T16:21:29.058Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "NguyenNhanController.cs",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\NguyenNhanController.cs",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Controllers\\NguyenNhanController.cs",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\NguyenNhanController.cs",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Controllers\\NguyenNhanController.cs",
+              "ViewState": "AgIAAHEAAAAAAAAAAAAswIIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T16:19:24.75Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\PhieuNhap\\Edit.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\PhieuNhap\\Edit.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\PhieuNhap\\Edit.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\PhieuNhap\\Edit.cshtml",
+              "ViewState": "AgIAAO0AAAAAAAAAAAAswP0AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-20T20:01:35.236Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\PhieuNhap\\Create.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\PhieuNhap\\Create.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\PhieuNhap\\Create.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\PhieuNhap\\Create.cshtml",
+              "ViewState": "AgIAALQAAAAAAAAAAAAAAKsAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-20T19:58:37.332Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "PhieuNhapController.cs",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\PhieuNhapController.cs",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Controllers\\PhieuNhapController.cs",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\PhieuNhapController.cs",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Controllers\\PhieuNhapController.cs",
+              "ViewState": "AgIAAEkBAAAAAAAAAAAYwEIBAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T19:57:42.943Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "PhieuXuatController.cs",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\PhieuXuatController.cs",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Controllers\\PhieuXuatController.cs",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\PhieuXuatController.cs",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Controllers\\PhieuXuatController.cs",
+              "ViewState": "AgIAAHQBAAAAAAAAAAAiwHUBAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T14:31:46.317Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\DetailLoi\\Index.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\DetailLoi\\Index.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\DetailLoi\\Index.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\DetailLoi\\Index.cshtml",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAAwHUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-20T13:25:49.554Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "LichSu.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\DetailLoi\\LichSu.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\DetailLoi\\LichSu.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\DetailLoi\\LichSu.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\DetailLoi\\LichSu.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-19T19:17:57.995Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "BangTienDo.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\DetailLoi\\BangTienDo.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\DetailLoi\\BangTienDo.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\DetailLoi\\BangTienDo.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\DetailLoi\\BangTienDo.cshtml",
+              "ViewState": "AgIAAHoAAAAAAAAAAAD4v4MAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-19T19:07:09.618Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\QLUser\\Create.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\QLUser\\Create.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\QLUser\\Create.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\QLUser\\Create.cshtml",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAAAIQAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-19T19:03:56.047Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\QLUser\\Index.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\QLUser\\Index.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\QLUser\\Index.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\QLUser\\Index.cshtml",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAAwCgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-19T19:00:36.917Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "CaiDat.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\DetailLoi\\CaiDat.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\DetailLoi\\CaiDat.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\DetailLoi\\CaiDat.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\DetailLoi\\CaiDat.cshtml",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAEQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-19T18:59:40.909Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\DetailLoi\\Create.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\DetailLoi\\Create.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\DetailLoi\\Create.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\DetailLoi\\Create.cshtml",
+              "ViewState": "AgIAADwBAAAAAAAAAAAAAEgBAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-19T18:24:03.233Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\DetailLoi\\Details.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\DetailLoi\\Details.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\DetailLoi\\Details.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\DetailLoi\\Details.cshtml",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAjwIUDAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-17T06:50:41.739Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "DSPhieuKK.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\LinhKien\\DSPhieuKK.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\LinhKien\\DSPhieuKK.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\LinhKien\\DSPhieuKK.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\LinhKien\\DSPhieuKK.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAwB0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-17T06:35:33.885Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BieuDoTienDo.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\DetailLoi\\BieuDoTienDo.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\DetailLoi\\BieuDoTienDo.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\DetailLoi\\BieuDoTienDo.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\DetailLoi\\BieuDoTienDo.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACEAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-17T05:56:15.836Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DetailLoiController.cs",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\DetailLoiController.cs",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Controllers\\DetailLoiController.cs",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\DetailLoiController.cs",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Controllers\\DetailLoiController.cs",
+              "ViewState": "AgIAAGkBAAAAAAAAAAASwG0BAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T13:18:47.394Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\PhieuXuat\\Edit.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\PhieuXuat\\Edit.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\PhieuXuat\\Edit.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\PhieuXuat\\Edit.cshtml",
+              "ViewState": "AgIAAJABAAAAAAAAAAAmwJIBAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-16T13:12:27.363Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "tbl_User.cs",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Models\\tbl_User.cs",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Models\\tbl_User.cs",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Models\\tbl_User.cs",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Models\\tbl_User.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAcwB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T12:51:13.334Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "QLUserController.cs",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\QLUserController.cs",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Controllers\\QLUserController.cs",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\QLUserController.cs",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Controllers\\QLUserController.cs",
+              "ViewState": "AgIAAGgAAAAAAAAAAAAUwHcAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T12:51:09.149Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "QLDayChuyenSX.cs",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Models\\QLDayChuyenSX.cs",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Models\\QLDayChuyenSX.cs",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Models\\QLDayChuyenSX.cs",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Models\\QLDayChuyenSX.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T13:23:37.112Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Web.config",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Web.config",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Web.config",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Web.config",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE0AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-05-15T13:22:41.637Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\PhieuXuat\\Index.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\PhieuXuat\\Index.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\PhieuXuat\\Index.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\PhieuXuat\\Index.cshtml",
+              "ViewState": "AgIAABoAAAAAAAAAAAAAwCUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-15T11:31:25.164Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "KiemKe.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\LinhKien\\KiemKe.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\LinhKien\\KiemKe.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\LinhKien\\KiemKe.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\LinhKien\\KiemKe.cshtml",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAAwCsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-15T10:43:36.469Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\LinhKien\\Index.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\LinhKien\\Index.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\LinhKien\\Index.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\LinhKien\\Index.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAwA8AAAB5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-15T09:41:27.103Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "LinhKienController.cs",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\LinhKienController.cs",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Controllers\\LinhKienController.cs",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Controllers\\LinhKienController.cs",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Controllers\\LinhKienController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAASwBIAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T09:40:25.664Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\PhieuXuat\\Create.cshtml",
+              "RelativeDocumentMoniker": "QLDayChuyenSanXuat\\Views\\PhieuXuat\\Create.cshtml",
+              "ToolTip": "E:\\DATN\\QLDayChuyenSanXuat\\QLDayChuyenSanXuat\\Views\\PhieuXuat\\Create.cshtml",
+              "RelativeToolTip": "QLDayChuyenSanXuat\\Views\\PhieuXuat\\Create.cshtml",
+              "ViewState": "AgIAANUAAAAAAAAAAAAAANcAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-13T17:49:43.225Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,257 @@
+﻿@model QLDayChuyenSanXuat.Models.tbl_DetailLoi
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tbl_DetailLoi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Maloi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Maloi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhanCap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhanCap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiMay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiMay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TieuDeTV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TieuDeTV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TieuDeTN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TieuDeTN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThoiDiemPhatSinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThoiDiemPhatSinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThoiDiemBatDauLai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThoiDiemBatDauLai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhanLoaiHT_Lon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhanLoaiHT_Lon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhanLoaiHT_Nho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhanLoaiHT_Nho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiPhatHanh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiPhatHanh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiXNHTLoi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiXNHTLoi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DetailTV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DetailTV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DetailTN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DetailTN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LinkDinhKemFile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LinkDinhKemFile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoCungSuKien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoCungSuKien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TaiPhat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaiPhat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TienDo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TienDo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiDamNhiemChinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiDamNhiemChinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThoiGianPhatHanh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThoiGianPhatHanh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiUpDateNew)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiUpDateNew)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeUpdateNew)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeUpdateNew)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiDNGhiNhapNN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiDNGhiNhapNN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiDNGhiNhapDSTT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiDNGhiNhapDSTT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiDNGhiNhapDSCH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiDNGhiNhapDSCH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiDNPheDuyetDS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiDNPheDuyetDS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiDNGhiNhapHQ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiDNGhiNhapHQ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiDNPheDuyetHQ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiDNPheDuyetHQ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoNgayClose)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoNgayClose)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

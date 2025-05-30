@@ -1,0 +1,68 @@
+﻿@model IEnumerable<QLDayChuyenSanXuat.Models.tbl_HienTuong>
+@using QLDayChuyenSanXuat.Models
+@{
+    ViewBag.Title = "LichSuHT";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    QLDayChuyenSX db = new QLDayChuyenSX();
+    var HTL = Model.FirstOrDefault();
+    var IDloi = db.tbl_DetailLoi.Where(x => x.Maloi == HTL.MaLoi).FirstOrDefault();
+}
+<div style="display: flex; justify-content: space-between; border-bottom: 1px solid black;padding:10px 0;margin:10px;">
+    <h4>Lịch sử hiện tượng lỗi @HTL.MaLoi</h4>
+    <div style="display:flex;">
+        <a href="@Url.Action("Index","DetailLoi")" class="btn" style="background-color:transparent;border:none;"> <i class="fa fa-list-ul"></i>&nbsp;Danh sách</a>
+        <a href="@Url.Action("Details", "DetailLoi", new {id = IDloi.ID})" class="btn" style="background-color:transparent;border:none;"><i class="fa fa-info-circle"></i>&nbsp;Chi tiết</a>
+        <a href="@Url.Action("lichSu", "DetailLoi", new {maloi = IDloi.Maloi})" class="btn" style="background-color:transparent;border:none;"><i class="fa fa-clock-o"></i>&nbsp;Lịch sử</a>
+    </div>
+</div>
+
+
+@foreach (var item in Model)
+{
+<div style="margin:1%;">
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid black;padding:5px 0; margin-top:10px;">
+        <h5><i class="fa fa-clock-o"></i> @item.TimeUpdate</h5>
+    </div>
+    <div style="display:flex;margin:0 10px;">
+        <div style="width:60%;margin-right:3%;display:block;">
+            <h6>Chi tiết tiếng Việt</h6>
+            <textarea id="HienTuongTV" style="max-width: 100%; width: 100%; white-space: pre-wrap; overflow: hidden; resize: none; display: block;" readonly>@item.DetailTV</textarea>
+            <h6>Chi tiết tiếng Nhật</h6>
+            <textarea id="HienTuongTN" style="max-width: 100%; width: 100%; white-space: pre-wrap; overflow: hidden; resize: none;" readonly>@item.DetailTN</textarea>
+        </div>
+        <div style="width:40%">
+            <ul>
+                <li>Phân cấp - <span style="color: royalblue;">@item.PhanCap</span></li>
+                <li>Model - <span style="color: royalblue;">@item.Model</span></li>
+                <li>Loại máy - <span style="color: royalblue;">@item.LoaiMay</span></li>
+                <li>Tiêu đề tiếng Việt - <span style="color: royalblue; ">@item.TieuDeTV</span></li>
+                <li>Tiêu đề tiếng Nhật - <span style="color: royalblue;">@item.TieuDeTN</span></li>
+                <li>Thời gian phát sinh - <span style="color: royalblue;">@item.ThoiDiemPhatSinh</span></li>
+                <li>Thời gian bắt đầu lại - <span style="color: royalblue;">@item.ThoiDiemBatDauLai</span></li>
+                <li>Phân loại hiện tượng - <span style="color: royalblue;">@item.PhanLoaiHT_Lon/ @item.PhanLoaiHT_Nho</span></li>
+                <li>Người xác nhận hiện tượng - <span style="color: royalblue;">@item.NguoiXNHTLoi</span></li>
+                <li>Người cập nhật - <span style="color: royalblue;">@item.NguoiUpdate</span></li>
+                <li>Số cùng sự kiện - <span style="color: royalblue;">@item.SoCungSuKien</span></li>
+                <li>Trạng thái - <span style="color: royalblue;">@item.TrangThai</span></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+}
+<script>
+    function autoResize(textarea) {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    }
+    const HienTuongTV = document.getElementById('HienTuongTV');
+    const HienTuongTN = document.getElementById('HienTuongTN');
+
+    HienTuongTV.addEventListener('input', () => autoResize(HienTuongTV));
+    HienTuongTN.addEventListener('input', () => autoResize(HienTuongTN));
+
+    // Gọi hàm lần đầu để thiết lập chiều cao ban đầu nếu có nội dung
+    autoResize(HienTuongTV);
+    autoResize(HienTuongTN);
+
+</script>

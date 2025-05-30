@@ -1,0 +1,228 @@
+﻿@model IEnumerable<QLDayChuyenSanXuat.Models.tbl_User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .table td, th {
+        border: 1px solid #dee2e6;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .table th {
+        background-color: #00a3cc;
+        color: white;
+    }
+</style>
+@if (TempData["ThongBao"] != null)
+{
+    <div class="modal fade" id="ThongBaoModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="text-align:center;">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="modalTitle">Thông báo</h5>
+                </div>
+                <div class="modal-body" style="display:grid;">
+                    <div>
+                        <i class="fa fa-check-circle" style="background-color: green; color: white; border-radius: 50%; padding: 8px;font-size:50px;"></i>
+                    </div>
+                    @TempData["ThongBao"]
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#ThongBaoModal').modal('show');
+        });
+    </script>
+}
+<div style="text-align: center; border-bottom: 2px solid gray; margin: 5px 0; color: #00a3cc;">
+    <h4>Danh sách thông tin và phân quyền User</h4>
+</div>
+
+<p>
+    <a href="@Url.Action("Create","QLUser")" style=" color: #00b8e6; font-size: larger; margin: 15px;"><i class="fas fa-user-plus"></i>Thêm mới</a>
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>Họ và tên</th>
+        <th>Mail</th>
+        <th>ADID</th>
+        <th>Phòng ban</th>
+        <th>Quyền phát hành lỗi</th>
+        <th>Quyền phê duyệt</th>
+        <th>Quyền quản lý User</th>
+        <th>Quyền xuất kho</th>
+        <th>Quyền nhập kho</th>
+        <th>Quyền kiểm kê</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <button type="button" style=" border: none; background: none; color: #00a3cc;" data-toggle="modal" data-target="#Modal-@item.ADID"><i class="fas fa-trash"></i></button>
+                <div id="Modal-@item.ADID" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color: #005266; color: white;">
+                                <h5>Bạn muốn xóa tài khoản User này?</h5>
+                                <button type="button" class="close" data-dismiss="modal" style="color:white;">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table">
+                                    <tr>
+                                        <th>Họ và tên</th>
+                                        <td>@item.Name</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Mail</th>
+                                        <td>@item.Mail</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ADID</th>
+                                        <td>@item.ADID</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Phòng ban</th>
+                                        <td>@item.MaPB</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Quyền phát hành lỗi</th>
+                                        <td>
+                                            @if (item.Role_PhatHanhLoi == true)
+                                            {
+                                                <i class="fa fa-check"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-times"></i>
+                                            }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Quyền phê duyệt</th>
+                                        <td>
+                                            @if (item.Role_PheDuyet == true)
+                                            {
+                                                <i class="fa fa-check"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-times"></i>
+                                            }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Quyền quản lý User</th>
+                                        <td>
+                                            @if (item.Role_QuanLyUser == true)
+                                            {
+                                                <i class="fa fa-check"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-times"></i>
+                                            }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Quyền xuất kho</th>
+                                        <td>
+                                            @if (item.Role_XuatKho == true)
+                                            {
+                                                <i class="fa fa-check"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-times"></i>
+                                            }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Quyền nhập kho</th>
+                                        <td>
+                                            @if (item.Role_NhapKho == true)
+                                            {
+                                                <i class="fa fa-check"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-times"></i>
+                                            }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Quyền kiểm kê</th>
+                                        <td>
+                                            @if (item.Role_KiemKe == true)
+                                            {
+                                                <i class="fa fa-check"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-times"></i>
+                                            }
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                <a href="@Url.Action("Delete","QLUser", new { id = item.ADID })" class="btn btn-primary">Đồng ý</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <a style="color: #006680;" href="@Url.Action("Edit", "QLUser", new { id = item.ADID })"> @item.Name</a>
+            </td>
+            <td>@item.Mail</td>
+            <td>@item.ADID</td>
+            <td>@item.MaPB</td>
+            <td>
+                @if (item.Role_PhatHanhLoi == true)
+                {
+                    <i class="fas fa-check"></i>
+                }
+            </td>
+            <td>
+                @if (item.Role_PheDuyet == true)
+                {
+                    <i class="fas fa-check"></i>
+                }
+            </td>
+            <td>
+                @if (item.Role_QuanLyUser == true)
+                {
+                    <i class="fas fa-check"></i>
+                }
+            </td>
+            <td>
+                @if (item.Role_XuatKho == true)
+                {
+                    <i class="fas fa-check"></i>
+                }
+            </td>
+            <td>
+                @if (item.Role_NhapKho == true)
+                {
+                    <i class="fas fa-check"></i>
+                }
+            </td>
+            <td>
+                @if (item.Role_KiemKe == true)
+                {
+                    <i class="fas fa-check"></i>
+                }
+            </td>
+
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,304 @@
+﻿@model QLDayChuyenSanXuat.Models.tbl_DoiSachCoHuu
+@using QLDayChuyenSanXuat.Models
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    QLDayChuyenSX db = new QLDayChuyenSX();
+    var lisLoi = db.tbl_DetailLoi.Select(x => x.Maloi);
+    var ID = db.tbl_DetailLoi.Where(x => x.Maloi == Model.MaLoi).FirstOrDefault().ID;
+}
+
+@using (Html.BeginForm("Edit", "DoiSachCoHuu", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="conten">
+        <div class="header" style="display:flex;justify-content:space-between;">
+            <h5 style="color: #006699; ">Ghi nhập thông tin đối sách cố hữu lỗi @Model.MaLoi</h5>
+            <button type="submit" class="btn" style="border: 1px solid; background-color: #0088cc; color: white;"> Cập nhật đối sách cố hữu</button>
+        </div>
+        <div style="display:flex;">
+            <div class="left-column">
+                <div class="row_PHL">
+                    <span class="coll_PHL">Mã lỗi</span>
+                    <input readonly class="col2" value="@Model.MaLoi" name="MaLoi" />
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Thời gian bắt đầu <span style="color:red;">*</span></span>
+                    <input required class="col2" type="date" name="TimeStart" value="@(Model.TimeStart.HasValue ? Model.TimeStart.Value.ToString("yyyy-MM-dd") : "")" />
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Phân loại đối sách <span style="color:red;">*</span></span>
+                    <div style="width:70%;">
+                        <select required style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 10px; box-sizing: border-box; " id="PhanLoaiDSCH_Lon" name="PhanLoaiDSCH_Lon">
+                            <option value="">-Chọn-</option>
+                            <option value="Thiết bị">Thiết bị</option>
+                            <option value="Sản xuất">Sản xuất</option>
+                            <option value="Linh kiện">Linh kiện</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <select required style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; " id="PhanLoaiDSCH_Nho" name="PhanLoaiDSCH_Nho">
+                        </select>
+                    </div>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Người xác nhận <span style="color:red;">*</span></span>
+                    <div style="width:70%;">
+                        <input required type="text" style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; " name="NguoiXN" value="@Model.NguoiXN" />
+                        <p style="color:red;font-size:13px;">Nhập theo mẫu: Mã Phòng ban _ Họ tên. VD: RD&PE_Nguyễn Thị Cẩm Ly</p>
+                    </div>
+                </div>
+
+                <div class="row_PHL">
+                    <span required class="coll_PHL">Người thực hiện đối sách <span style="color:red;">*</span></span>
+                    <div style="width:70%;">
+                        <input type="text" style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; " name="NguoiTH" value="@Model.NguoiTH" />
+                        <p style="color:red;font-size:13px;">Nhập theo mẫu: Mã Phòng ban _ Họ tên. VD: RD&PE_Nguyễn Thị Cẩm Ly</p>
+                    </div>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Người cập nhật</span>
+                    <input readonly class="col2" name="NguoiUpDate" value="@Session["ADID"]" />
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">File đính kèm</span>
+                    <div class="file-upload col2">
+                        <input type="file" id="fileDinhKem" name="files" multiple>
+                        <label for="fileDinhKem" class="file-upload-label">Choose File | No file chosen</label>
+                    </div>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Số cùng sự kiện</span>
+                    <select id="SoCungSK" name="SoCungSuKien" class="col2">
+                        <option value="">-Chọn-</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="right-column">
+                <div class="row_PHL">
+                    <span class="coll_PHL">Chi tiết tiếng Việt <span style="color:red;">*</span></span>
+                    <textarea required class="col2" name="ChiTietTV" id="ChiTietTV" style="white-space: pre-wrap; overflow: hidden; resize: none;">@Model.ChiTietTV</textarea>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Chi tiết tiếng Nhật </span>
+                    <textarea class="col2" name="ChiTietTN" id="ChiTietTN" style="white-space: pre-wrap; overflow: hidden; resize: none;">@Model.ChiTietTN</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div style=" color: cornflowerblue; font-size: large;">
+    &nbsp;&nbsp;<i class="fas fa-arrow-left"></i>&nbsp;<a href="@Url.Action("Details", "DetailLoi", new {id = ID})" style=" color: cornflowerblue;">Back to list</a>
+</div>
+<style>
+    .row_PHL {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .coll_PHL {
+        width: 30%;
+        display: block;
+        margin-right: 5px;
+        font-weight: bold;
+        color: black;
+    }
+
+    .col2 {
+        max-width: 70%;
+        width: 70%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .conten {
+        margin: 1% 5%;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+    }
+
+    .header {
+        align-items: center;
+        border-bottom: 1px solid black;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+        background-color: #f9f9f9;
+    }
+
+
+    .left-column, .right-column {
+        padding: 10px;
+        /*flex: 1;*/
+    }
+
+    .left-column {
+        margin-right: 3%;
+        width: 60%;
+    }
+
+    .right-column {
+        width: 40%;
+    }
+
+    .file-upload {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #fff;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+    }
+
+        .file-upload input[type="file"] {
+            position: absolute;
+            font-size: 100px;
+            opacity: 0;
+            right: 0;
+            top: 0;
+        }
+
+    .file-upload-label {
+        flex-grow: 1;
+        padding-right: 10px;
+        color: #777;
+    }
+
+    .footer {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .report-button {
+        background-color: #dc3545; /* Màu đỏ tương tự */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+        .report-button:hover {
+            background-color: #c82333;
+        }
+</style>
+<script>
+    const subOptions = {
+        "Thiết bị": [
+            "Bảo trì, bảo dưỡng định kỳ theo đúng quy trình",
+            "Nâng cấp hoặc thay thế thiết bị cũ",
+            "Cải tiến hệ thống điều khiển và tự động hóa",
+            "Đào tạo chuyên sâu cho nhân viên kỹ thuật",
+            "Xây dựng quy trình chuẩn đoán và xử lý sự cố chi tiết",
+            "Lắp đặt hệ thống giám sát và cảnh báo sớm",
+            "Đầu tư vào thiết bị dự phòng chiến lược",
+            "Phân tích nguyên nhân gốc rễ các sự cố lặp lại và có biện pháp phòng ngừa",
+            "Tối ưu hóa layout nhà máy để giảm thiểu tác động của lỗi thiết bị"
+        ],
+        "Sản xuất": [
+            "Rà soát và tối ưu hóa quy trình sản xuất",
+            "Chuẩn hóa tài liệu hướng dẫn công việc chi tiết và dễ hiểu",
+            "Đào tạo bài bản cho công nhân về quy trình và kỹ năng",
+            "Áp dụng các công cụ quản lý chất lượng ",
+            "Tự động hóa các công đoạn lặp đi lặp lại và dễ gây lỗi",
+            "Thiết kế quy trình kiểm tra chất lượng nghiêm ngặt tại các công đoạn",
+            "Thu thập và phân tích dữ liệu lỗi để cải tiến liên tục",
+            "Thiết kế hệ thống cảnh báo và phản hồi nhanh khi có lỗi",
+            "Đánh giá và cải thiện môi trường làm việc "
+        ],
+        "Linh kiện": [
+            "Đánh giá và lựa chọn nhà cung cấp uy tín, chất lượng",
+            "Xây dựng quy trình kiểm tra chất lượng đầu vào nghiêm ngặt",
+            "Thiết lập tiêu chuẩn chất lượng linh kiện rõ ràng",
+            "Cải thiện quy trình bảo quản và vận chuyển linh kiện",
+            "Phối hợp chặt chẽ với nhà cung cấp để giải quyết vấn đề chất lượng",
+            "Đầu tư vào hệ thống quản lý kho linh kiện hiệu quả",
+            "Thiết kế sản phẩm giảm thiểu sự phụ thuộc vào các linh kiện",
+            "Thực hiện kiểm tra định kỳ chất lượng linh kiện trong kho",
+            "Xem xét phương án tự sản xuất một số linh kiện quan trọng (nếu khả thi)"
+        ],
+        "Other": [
+            "Other",
+            "Đảm bảo nguồn cung cấp điện, khí nén ổn định và có hệ thống dự phòng",
+            "Xây dựng quy trình ứng phó với các sự cố bên ngoài (mất điện, thiên tai)",
+            "Đầu tư vào hệ thống IT và phần mềm quản lý sản xuất ổn định",
+            "Đào tạo nhân viên về an toàn lao động và phòng chống cháy nổ",
+            "Thiết lập kênh giao tiếp hiệu quả giữa các bộ phận",
+            "Thực hiện đánh giá rủi ro định kỳ và có biện pháp phòng ngừa",
+            "Có kế hoạch bảo trì hệ thống phụ trợ (điện, khí nén, IT)",
+            "Phân tích tác động của các yếu tố môi trường đến sản xuất"
+        ]
+    };
+
+    $(document).ready(function () {
+        var selectSk = document.getElementById("SoCungSK");
+        selectSk.value = "@Model.SoCungSuKien";
+
+        function upLoadPL(selectedLon, selectedNho) {
+            var selectNho = $("#PhanLoaiDSCH_Nho");
+            selectNho.empty();
+            if (subOptions[selectedLon]) {
+                subOptions[selectedLon].forEach(function (item) {
+                    var isSelected = item == selectedNho ? "selected" : "";
+                    selectNho.append('<option value="' + item + '"' + isSelected + '>' + item + '</option>');
+                })
+            }
+        }
+        var selectLon = document.getElementById("PhanLoaiDSCH_Lon");
+        selectLon.value = "@Html.Raw(Model.PhanLoaiDSCH_Lon)";
+        upLoadPL("@Html.Raw(Model.PhanLoaiDSCH_Lon)", "@Html.Raw(Model.PhanLoaiDSCH_Nho)")
+        $("#PhanLoaiDSCH_Lon").on('change', function () {
+            var selectedLon = $(this).val();
+            upLoadPL(selectedLon, null);
+        });
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const fileInput = document.getElementById('fileDinhKem');
+        const fileLabel = document.querySelector('.file-upload-label');
+
+        fileInput.addEventListener('change', function () {
+            // Xoá nội dung cũ
+            fileLabel.innerHTML = '';
+
+            if (this.files && this.files.length > 0) {
+                const ul = document.createElement('ul');
+
+                Array.from(this.files).forEach(file => {
+                    const li = document.createElement('li');
+                    li.textContent = file.name;
+                    ul.appendChild(li);
+                });
+
+                fileLabel.appendChild(ul);
+            } else {
+                fileLabel.textContent = 'Choose File | No file chosen';
+            }
+        });
+    });
+
+
+    function autoResize(textarea) {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    }
+
+    const ChiTietTV = document.getElementById('ChiTietTV');
+    const ChiTietTN = document.getElementById('ChiTietTN');
+
+    ChiTietTV.addEventListener('input', () => autoResize(ChiTietTV));
+    ChiTietTN.addEventListener('input', () => autoResize(ChiTietTN));
+
+    // Gọi hàm lần đầu để thiết lập chiều cao ban đầu nếu có nội dung
+    autoResize(ChiTietTV);
+    autoResize(ChiTietTN);
+
+</script>

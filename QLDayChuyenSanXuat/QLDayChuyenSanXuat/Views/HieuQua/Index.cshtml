@@ -1,0 +1,88 @@
+﻿@model IEnumerable<QLDayChuyenSanXuat.Models.tbl_HieuQua>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaLoi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeDoneHQ)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NguoiXN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NguoiUpdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeUpdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LinkFileDinhKem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoCungSuKien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChiTietTV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChiTietTN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaLoi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeDoneHQ)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NguoiXN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NguoiUpdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeUpdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LinkFileDinhKem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoCungSuKien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChiTietTV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChiTietTN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrangThai)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

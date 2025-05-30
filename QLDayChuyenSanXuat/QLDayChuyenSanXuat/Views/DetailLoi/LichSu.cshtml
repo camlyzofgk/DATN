@@ -1,0 +1,110 @@
+﻿@model IEnumerable<QLDayChuyenSanXuat.Models.tbl_History>
+@using QLDayChuyenSanXuat.Models
+@{
+    ViewBag.Title = "LichSu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Lsu = Model.FirstOrDefault();
+    QLDayChuyenSX db = new QLDayChuyenSX();
+    var detailLoi = db.tbl_DetailLoi.Where(x => x.Maloi == Lsu.MaLoi).FirstOrDefault();
+    var NN = db.tbl_NguyenNhan.Where(x => x.MaLoi == Lsu.MaLoi).OrderByDescending(x => x.ID).FirstOrDefault();
+    tbl_NguyenNhan view_NN = new tbl_NguyenNhan()
+    {
+        MaLoi = detailLoi.Maloi,
+        PhanLoaiNN_Lon = "",
+        PhanLoaiNN_Nho = "",
+    };
+    if (NN != null)
+    {
+        view_NN.PhanLoaiNN_Lon = NN.PhanLoaiNN_Lon;
+        view_NN.PhanLoaiNN_Nho = NN.PhanLoaiNN_Nho;
+    }
+}
+
+<div style="display: flex; justify-content: space-between; border-bottom: 1px solid black; padding: 10px 0; margin: 10px;">
+    <h3>Chi tiết lịch sử cập nhật lỗi @detailLoi.Maloi</h3>
+    <div style="display:flex;">
+        <a href="@Url.Action("Index","DetailLoi")" class="btn" style="background-color:transparent;border:none;"> <i class="fa fa-list-ul"></i>&nbsp;Danh sách</a>
+        <a href="@Url.Action("Details", "DetailLoi", new {id = detailLoi.ID})" class="btn" style="background-color:transparent;border:none;"><i class="fa fa-info-circle"></i>&nbsp;Chi tiết</a>
+        <a href="@Url.Action("LichSu", "DetailLoi", new {maloi = detailLoi.Maloi})" class="btn" style="background-color:transparent;border:none;"><i class="fa fa-clock-o"></i>&nbsp;Lịch sử</a>
+    </div>
+</div>
+<div style="display: flex;">
+    <div style="width:55%;margin:0 3%">
+        <table class="tab">
+            <tr>
+                <th>Model</th>
+                <td>@detailLoi.Model</td>
+            </tr>
+            <tr>
+                <th>Loại máy</th>
+                <td>@detailLoi.LoaiMay</td>
+            </tr>
+            <tr>
+                <th>Tiêu đề tiếng Nhật</th>
+                <td>@detailLoi.TieuDeTN</td>
+            </tr>
+            <tr>
+                <th>Tiêu đề tiếng Việt</th>
+                <td>@detailLoi.TieuDeTV</td>
+            </tr>
+            <tr>
+                <th>Thời gian phát sinh</th>
+                <td>@detailLoi.ThoiDiemPhatSinh</td>
+            </tr>
+            <tr>
+                <th>Thời gian bắt đầu lại</th>
+                <td>@detailLoi.ThoiDiemBatDauLai</td>
+            </tr>
+            <tr>
+                <th>Phân loại hiện tượng</th>
+                <td>@detailLoi.PhanLoaiHT_Lon/ @detailLoi.PhanLoaiHT_Nho</td>
+            </tr>
+            <tr>
+                <th>Phân loại nguyên nhân</th>
+                <td>@view_NN.PhanLoaiNN_Lon/ @view_NN.PhanLoaiNN_Nho</td>
+            </tr>
+            <tr>
+                <th>Tiến độ</th>
+                <td>@detailLoi.TienDo</td>
+            </tr>
+        </table>
+    </div>
+    <div style="width:45%;">
+        <table class="tab tabtd">
+            <tr>
+                <th>STT</th>
+                <th>Người cập nhật</th>
+                <th>Thời gian cập nhật</th>
+                <th>Chi tiết cập nhật</th>
+            </tr>
+            @{
+                var stt = 1;
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@stt</td>
+                        <td>@item.NguoiUpdate</td>
+                        <td>@item.TimeUpDate</td>
+                        <td>@item.DetailUpdate</td>
+                    </tr>
+                    stt++;
+                }
+             }
+        </table>
+    </div>
+</div>
+<style>
+    .tab {
+        width: 100%;
+    }
+
+        .tab th {
+            color: darkcyan;
+            height: 50px;
+        }
+        .tabtd tr{
+            height:40px;
+            text-align:center;
+            border-bottom: 1px solid grey;
+        }
+</style>

@@ -1,0 +1,85 @@
+﻿@using Newtonsoft.Json
+@{
+    ViewBag.Title = "BieuDoThongKe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="container" style="width:95%; height:400px;"></div>
+<script>
+    var categori = @Html.Raw(JsonConvert.SerializeObject(ViewBag.LisPB));
+
+    var listLoiIn = @Html.Raw(JsonConvert.SerializeObject(ViewBag.listLoiIn));
+    var listLoiOut = @Html.Raw(JsonConvert.SerializeObject(ViewBag.listLoiOut));
+
+    var listChxCloseIn = @Html.Raw(JsonConvert.SerializeObject(ViewBag.listChxCloseIn));
+    var listChxCloseOut = @Html.Raw(JsonConvert.SerializeObject(ViewBag.listChxCloseOut));
+
+    var listCloseIn = @Html.Raw(JsonConvert.SerializeObject(ViewBag.listCloseIn));
+    var listCloseOut = @Html.Raw(JsonConvert.SerializeObject(ViewBag.listCloseOut));
+
+    Highcharts.chart("container", {
+        chart: {
+            type: "column"
+        },
+
+        title: {
+            text: "Biểu đồ thống kê",
+            align: "center"
+        },
+
+        xAxis: {
+            categories: categori
+        },
+
+        yAxis: {
+            allowDecimals: false,
+            min: 0,
+            title: {
+                text: "Số lỗi"
+            }
+        },
+
+        tooltip: {
+            format:
+                "<b>{key}</b><br/>{series.name}: {y}<br/>" + "Total: {point.stackTotal}"
+        },
+
+        plotOptions: {
+            column: {
+                stacking: "normal"
+            }
+        },
+
+        series: [
+            {
+                name: "Tổng lỗi In",
+                data: listLoiIn,
+                stack: "Tổng lỗi"
+            },
+            {
+                name: "Tổng lỗi Out",
+                data: listLoiOut,
+                stack: "Tổng lỗi"
+            },
+            {
+                name: "Số lỗi close In",
+                data: listCloseIn,
+                stack: "Lỗi close"
+            },
+            {
+                name: "Số lỗi close Out",
+                data: listCloseOut,
+                stack: "Lỗi close"
+            },
+            {
+                name: "Số lỗi chưa close In",
+                data: listChxCloseIn,
+                stack: "Lỗi chưa close"
+            },
+            {
+                name: "Số lỗi chưa close Out",
+                data: listChxCloseOut,
+                stack: "Lỗi chưa close"
+            }
+        ]
+    });
+</script>

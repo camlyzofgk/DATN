@@ -1,0 +1,358 @@
+﻿@model QLDayChuyenSanXuat.Models.tbl_NguyenNhan
+@using QLDayChuyenSanXuat.Models
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    QLDayChuyenSX db = new QLDayChuyenSX();
+    var lisModel = db.tbl_DetailLoi.Select(x => x.Maloi).ToList();
+    var detailLoi = db.tbl_DetailLoi.Where(x => x.Maloi == Model.MaLoi).FirstOrDefault();
+    var timePH = detailLoi.ThoiGianPhatHanh.HasValue ? detailLoi.ThoiGianPhatHanh.Value.ToString("yyyy-MM-ddTHH:mm") : "";
+    var soNgayClose = Model.SoNgayClose ?? 0;
+}
+
+@using (Html.BeginForm("Edit", "NguyenNhan", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="conten">
+        <div class="header" style="display:flex;justify-content:space-between;">
+            <h5 style="color: #006699; ">Ghi nhập thông tin nguyên nhân lỗi @Model.MaLoi</h5>
+            <button type="submit" class="btn" style="border: 1px solid; background-color: #0088cc; color: white;"> Cập nhật nguyên nhân</button>
+        </div>
+        <div style="display:flex;">
+            <div class="left-column">
+                <div class="row_PHL">
+                    <span class="coll_PHL">Mã lỗi</span>
+                    <input readonly class="col2" name="MaLoi" value="@Model.MaLoi" />
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Phân loại nguyên nhân <span style="color:red;">*</span></span>
+                    <div style="width:70%;">
+                        <select required style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 10px; box-sizing: border-box; " id="PhanLoaiNN_Lon" name="PhanLoaiNN_Lon">
+                            <option value="">-Chọn-</option>
+                            <option value="Thiết bị">Thiết bị</option>
+                            <option value="Sản xuất">Sản xuất</option>
+                            <option value="Linh kiện">Linh kiện</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <select required style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; " id="PhanLoaiNN_Nho" name="PhanLoaiNN_Nho">
+                        </select>
+                    </div>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Thời gian Close <span style="color:red;">*</span></span>
+                    <div style="width:70%;">
+                        <select required style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 10px; box-sizing: border-box; " id="ThoiGianClose" name="SoNgayClose">
+                            <option value="">-Chọn-</option>
+                            <option>11</option>
+                            <option>50</option>
+                        </select>
+                        <input style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; " type="text" id="TimeClose" name="TimeClose" readonly />
+                        <input style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; " type="datetime" id="DealineCloseNN" name="DealineCloseNN" hidden />
+                        <input style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; " type="datetime" id="DealineCloseDSTT" name="DealineCloseDSTT" hidden />
+                        <input style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; " type="datetime" id="DealineGhiNhapDSCH" name="DealineGhiNhapDSCH" hidden />
+                        <input style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; " type="datetime" id="DealinePheDuyetDSCH" name="DealinePheDuyetDSCH" hidden />
+                        <input style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; " type="datetime" id="DealineGhiNhapHQ" name="DealineGhiNhapHQ" hidden />
+                        <input style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; " type="datetime" id="DealinePheDuyetHQ" name="DealinePheDuyetHQ" hidden />
+                    </div>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Người cập nhật</span>
+                    <input readonly class="col2" name="NguoiUpdate" value="@Session["ADID"]" />
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">File đính kèm</span>
+                    <div class="file-upload col2">
+                        <input type="file" id="fileDinhKem" name="files" multiple>
+                        <label for="fileDinhKem" class="file-upload-label">Choose File | No file chosen</label>
+                    </div>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Số cùng sự kiện</span>
+                    <select name="SoCungSuKien" class="col2">
+                        <option value="">-Chọn-</option>
+                        @foreach (var item in lisModel)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="right-column">
+                <div class="row_PHL">
+                    <span class="coll_PHL">Chi tiết tiếng Việt <span style="color:red;">*</span></span>
+                    <textarea required class="col2" name="ChiTietTV" id="ChiTietTV" style="white-space: pre-wrap; overflow: hidden; resize: none;">@Model.ChiTietTV</textarea>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Chi tiết tiếng Nhật </span>
+                    <textarea class="col2" name="ChiTietTN" id="ChiTietTN" style="white-space: pre-wrap; overflow: hidden; resize: none;">@Model.ChiTietTN</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div style=" color: cornflowerblue; font-size: large; ">
+    &nbsp;&nbsp;<i class="fas fa-arrow-left"></i>&nbsp;<a href="@Url.Action("Details", "DetailLoi", new {id = detailLoi.ID})" style=" color: cornflowerblue;">Back to list</a>
+</div>
+
+<style>
+    .row_PHL {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .coll_PHL {
+        width: 30%;
+        display: block;
+        margin-right: 5px;
+        font-weight: bold;
+        color: black;
+    }
+
+    .col2 {
+        max-width: 70%;
+        width: 70%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .conten {
+        margin: 1% 5%;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+    }
+
+    .header {
+        align-items: center;
+        border-bottom: 1px solid black;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+        background-color: #f9f9f9;
+    }
+
+
+    .left-column, .right-column {
+        padding: 10px;
+        /*flex: 1;*/
+    }
+
+    .left-column {
+        margin-right: 3%;
+        width: 60%;
+    }
+
+    .right-column {
+        width: 40%;
+    }
+
+
+    .file-upload {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #fff;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+    }
+
+        .file-upload input[type="file"] {
+            position: absolute;
+            font-size: 100px;
+            opacity: 0;
+            right: 0;
+            top: 0;
+        }
+
+    .file-upload-label {
+        flex-grow: 1;
+        padding-right: 10px;
+        color: #777;
+    }
+
+    .footer {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .report-button {
+        background-color: #dc3545; /* Màu đỏ tương tự */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+        .report-button:hover {
+            background-color: #c82333;
+        }
+</style>
+<script>
+    const subOptions = {
+        "Thiết bị": [
+            "Lỗi phần cứng",
+            "Lỗi phần mềm điều khiển",
+            "Sai cấu hình",
+            "Lỗi cài đặt",
+            "Lỗi bảo trì",
+            "Quá nhiệt",
+            "Rung lắc",
+            "Lỗi cảm biến",
+            "Nguồn điện không ổn định"
+        ],
+        "Sản xuất": [
+            "Lỗi quy trình",
+            "Không tuân thủ",
+            "Lỗi thiết kế quy trình",
+            "Thiếu hướng dẫn",
+            "Sai thông số",
+            "Vị trí làm việc",
+            "Áp lực cao",
+            "Thiếu kiểm soát",
+            "Lỗi cấp liệu"
+        ],
+        "Linh kiện": [
+            "Khuôn (M) mòn/nứt",
+            "Khuôn (M) sai kích thước",
+            "Điện tử (E) lỗi ESD",
+            "Điện tử (E) hàn sai",
+            "Điện tử (E) kém chất lượng",
+            "Điện tử (E) sai thông số",
+            "Linh kiện ẩm/oxi hóa",
+            "Hư hỏng vận chuyển",
+            "Sai loại linh kiện"
+        ],
+        "Other": [
+            "Other",
+            "Lỗi điện chính",
+            "Lỗi khí nén",
+            "Lỗi làm mát/bôi trơn",
+            "Lỗi phần mềm MES",
+            "Lỗi mạng",
+            "Lỗi tài liệu",
+            "Yếu tố môi trường",
+            "Lỗi nhà cung cấp",
+            "Lỗi bảo trì hệ thống",
+            "Yếu tố ngoại cảnh"
+        ]
+    };
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const fileInput = document.getElementById('fileDinhKem');
+        const fileLabel = document.querySelector('.file-upload-label');
+
+        fileInput.addEventListener('change', function () {
+            // Xoá nội dung cũ
+            fileLabel.innerHTML = '';
+
+            if (this.files && this.files.length > 0) {
+                const ul = document.createElement('ul');
+
+                Array.from(this.files).forEach(file => {
+                    const li = document.createElement('li');
+                    li.textContent = file.name;
+                    ul.appendChild(li);
+                });
+
+                fileLabel.appendChild(ul);
+            } else {
+                fileLabel.textContent = 'Choose File | No file chosen';
+            }
+        });
+    });
+
+
+    function autoResize(textarea) {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    }
+
+    const ChiTietTV = document.getElementById('ChiTietTV');
+    const ChiTietTN = document.getElementById('ChiTietTN');
+
+    ChiTietTV.addEventListener('input', () => autoResize(ChiTietTV));
+    ChiTietTN.addEventListener('input', () => autoResize(ChiTietTN));
+
+    // Gọi hàm lần đầu để thiết lập chiều cao ban đầu nếu có nội dung
+    autoResize(ChiTietTV);
+    autoResize(ChiTietTN);
+
+    $(document).ready(function () {
+        var selectNN_L = document.getElementById("PhanLoaiNN_Lon");
+        selectNN_L.value = "@Model.PhanLoaiNN_Lon";
+        var selectNN_N = "@Model.PhanLoaiNN_Nho";
+        updateNN("@Model.PhanLoaiNN_Lon", selectNN_N);
+        $("#PhanLoaiNN_Lon").on('change', function () {
+            var NNL = $(this).val();
+            updateNN(NNL, null);
+        });
+        function updateNN(NNL, NNN) {
+            const selectNN_N = $("#PhanLoaiNN_Nho")
+            selectNN_N.empty();
+            if (subOptions[NNL]) {
+                subOptions[NNL].forEach(function (item) {
+                    const isSelected = item === NNN ? "selected" : "";
+                    selectNN_N.append(`<option value="${item}" ${isSelected}>${item}</option>`);
+                });
+            }
+        }
+        var selectNN_L = $("#SoCungSuKien");
+        selectNN_L.value = "@Model.SoCungSuKien";
+        function formatDate(d) {
+            var day = String(d.getDate()).padStart(2, '0');
+            var month = String(d.getMonth() + 1).padStart(2, '0');
+            var year = d.getFullYear();
+            return `${year}-${month}-${day}`;
+        }
+
+        function addDay(startDate, daysToAdd) {
+            var ngay = new Date(startDate);
+            var songay = 0;
+            while (songay < daysToAdd) {
+                ngay.setDate(ngay.getDate() + 1);
+                if (ngay.getDay() !== 0 && ngay.getDay() !== 6) {
+                    songay++;
+                }
+            }
+            return formatDate(ngay);
+        }
+
+        function dealine(songay,timeph) {
+    if (songay == 11) {
+        $("#TimeClose").val(addDay(timeph,11));
+        $("#DealineCloseNN").val(addDay(timeph,2));
+        $("#DealineCloseDSTT").val(addDay(timeph,4));
+        $("#DealineGhiNhapDSCH").val(addDay(timeph,6));
+        $("#DealinePheDuyetDSCH").val(addDay(timeph,8));
+        $("#DealineGhiNhapHQ").val(addDay(timeph,9));
+        $("#DealinePheDuyetHQ").val(addDay(timeph,10));
+    } else if(songay == 50) {
+        $("#TimeClose").val(addDay(timeph,50));
+        $("#DealineCloseNN").val(addDay(timeph,2));
+        $("#DealineCloseDSTT").val(addDay(timeph,4));
+        $("#DealineGhiNhapDSCH").val(addDay(timeph,45));
+        $("#DealinePheDuyetDSCH").val(addDay(timeph,47));
+        $("#DealineGhiNhapHQ").val(addDay(timeph,48));
+        $("#DealinePheDuyetHQ").val(addDay(timeph,49));
+    }
+}
+
+        var soNgayClose = @soNgayClose;
+        var timePH = "@timePH"; // thời gian phát hành đã render
+
+        dealine(soNgayClose,timePH);
+
+        $("#ThoiGianClose").val(soNgayClose);
+        $("#ThoiGianClose").on('change', function () {
+            var songay = $(this).val();
+            dealine(songay,timePH);
+        });
+    });
+</script>

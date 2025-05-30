@@ -1,0 +1,136 @@
+﻿@model IEnumerable<QLDayChuyenSanXuat.Models.tbl_HienTuong>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaLoi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhanCap)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoaiMay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TieuDeTV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TieuDeTN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThoiDiemPhatSinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThoiDiemBatDauLai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhanLoaiHT_Lon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhanLoaiHT_Nho)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NguoiXNHTLoi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DetailTV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DetailTN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LinkDinhKemFile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoCungSuKien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NguoiUpdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeUpdate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaLoi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhanCap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoaiMay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TieuDeTV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TieuDeTN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThoiDiemPhatSinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThoiDiemBatDauLai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhanLoaiHT_Lon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhanLoaiHT_Nho)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NguoiXNHTLoi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DetailTV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DetailTN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LinkDinhKemFile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoCungSuKien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrangThai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NguoiUpdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeUpdate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

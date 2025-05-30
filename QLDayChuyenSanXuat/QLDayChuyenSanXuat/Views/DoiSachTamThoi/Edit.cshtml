@@ -1,0 +1,304 @@
+﻿@model QLDayChuyenSanXuat.Models.tbl_DoiSachTamThoi
+@using QLDayChuyenSanXuat.Models
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    QLDayChuyenSX db = new QLDayChuyenSX();
+    var lisLoi = db.tbl_DetailLoi.Select(x => x.Maloi);
+    var ID = db.tbl_DetailLoi.Where(x => x.Maloi == Model.MaLoi).FirstOrDefault().ID;
+}
+
+
+@using (Html.BeginForm("Edit", "DoiSachTamThoi", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="conten">
+        <div class="header" style="display:flex;justify-content:space-between;">
+            <h5 style="color: #006699; ">Ghi nhập thông tin đối sách tạm thời lỗi @Model.MaLoi</h5>
+            <button type="submit" class="btn" style="border: 1px solid; background-color: #0088cc; color: white;"> Cập nhật đối sách tạm thời</button>
+        </div>
+        <div style="display:flex;">
+            <div class="left-column">
+                <div class="row_PHL">
+                    <span class="coll_PHL">Mã lỗi</span>
+                    <input readonly class="col2" value="@Model.MaLoi" name="MaLoi" />
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Thời gian bắt đầu <span style="color:red;">*</span></span>
+                    <input class="col2" type="date" name="TimeStart" value="@(Model.TimeStart.HasValue ? Model.TimeStart.Value.ToString("yyyy-MM-dd") : "")" />
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Phân loại đối sách <span style="color:red;">*</span></span>
+                    <div style="width:70%;">
+                        <select style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 10px; box-sizing: border-box; " id="PhanLoaiDSTT_Lon" name="PhanLoaiDSTT_Lon">
+                            <option value="">-Chọn-</option>
+                            <option value="Thiết bị">Thiết bị</option>
+                            <option value="Sản xuất">Sản xuất</option>
+                            <option value="Linh kiện">Linh kiện</option>
+                            <option value="Other">Other</option>
+                        </select>
+
+                        <select style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; " id="PhanLoaiDSTT_Nho" name="PhanLoaiDSTT_Nho">
+                        </select>
+                    </div>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Người thực hiện đối sách <span style="color:red;">*</span></span>
+                    <div style="width:70%;">
+                        <input type="text" style="max-width: 100%; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; " name="NguoiTH" value="@Model.NguoiTH" />
+                        <p style="color:red;font-size:13px;">Nhập theo mẫu: Mã Phòng ban _ Họ tên. VD: RD&PE_Nguyễn Thị Cẩm Ly</p>
+                    </div>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Người cập nhật</span>
+                    <input readonly class="col2" name="NguoiUpdate" value="@Session["ADID"]" />
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">File đính kèm</span>
+                    <div class="file-upload col2">
+                        <input type="file" id="fileDinhKem" name="files" multiple>
+                        <label for="fileDinhKem" class="file-upload-label">Choose File | No file chosen</label>
+                    </div>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Số cùng sự kiện</span>
+                    <select id="SoCungSK" name="SoCungSuKien" class="col2">
+                        <option value="">-Chọn-</option>
+                        @foreach (var item in lisLoi)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="right-column">
+                <div class="row_PHL">
+                    <span class="coll_PHL">Chi tiết tiếng Việt <span style="color:red;">*</span></span>
+                    <textarea class="col2" name="ChiTietTV" id="ChiTietTV" style="white-space: pre-wrap; overflow: hidden; resize: none;">@Model.ChiTietTV</textarea>
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Chi tiết tiếng Nhật </span>
+                    <textarea class="col2" name="ChiTietTN" id="ChiTietTN" style="white-space: pre-wrap; overflow: hidden; resize: none;">@Model.ChiTietTN</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div style=" color: cornflowerblue; font-size: large;">
+    &nbsp;&nbsp;<i class="fas fa-arrow-left"></i>&nbsp;<a href="@Url.Action("Details", "DetailLoi", new {id = ID})" style=" color: cornflowerblue;">Back to list</a>
+</div>
+<style>
+    .row_PHL {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .coll_PHL {
+        width: 30%;
+        display: block;
+        margin-right: 5px;
+        font-weight: bold;
+        color: black;
+    }
+
+    .col2 {
+        max-width: 70%;
+        width: 70%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .conten {
+        margin: 1% 5%;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+    }
+
+    .header {
+        align-items: center;
+        border-bottom: 1px solid black;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+        background-color: #f9f9f9;
+    }
+
+
+    .left-column, .right-column {
+        padding: 10px;
+        /*flex: 1;*/
+    }
+
+    .left-column {
+        margin-right: 3%;
+        width: 60%;
+    }
+
+    .right-column {
+        width: 40%;
+    }
+
+
+    .file-upload {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #fff;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+    }
+
+        .file-upload input[type="file"] {
+            position: absolute;
+            font-size: 100px;
+            opacity: 0;
+            right: 0;
+            top: 0;
+        }
+
+    .file-upload-label {
+        flex-grow: 1;
+        padding-right: 10px;
+        color: #777;
+    }
+
+    .footer {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .report-button {
+        background-color: #dc3545; /* Màu đỏ tương tự */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+        .report-button:hover {
+            background-color: #c82333;
+        }
+</style>
+<script>
+    const subOptions = {
+        "Thiết bị": [
+            "Khởi động lại thiết bị",
+            "Kiểm tra và siết chặt kết nối lỏng",
+            "Bôi trơn các bộ phận chuyển động",
+            "Thay thế nhanh bộ phận dự phòng (nếu có)",
+            "Cách ly thiết bị lỗi để tránh ảnh hưởng dây chuyền",
+            "Điều chỉnh tạm thời thông số hoạt động (nếu an toàn)",
+            "Vệ sinh nhanh các cảm biến hoặc bộ phận quang học",
+            "Kiểm tra nguồn điện đầu vào",
+            "Bypass tạm thời bộ phận lỗi (nếu khả thi và an toàn)"
+        ],
+        "Sản xuất": [
+            "Tạm dừng công đoạn bị ảnh hưởng",
+            "Điều chỉnh thứ tự công việc tạm thời",
+            "Bổ sung nhân lực hỗ trợ công đoạn bị chậm",
+            "Kiểm tra nhanh và loại bỏ sản phẩm lỗi",
+            "Thực hiện kiểm tra thủ công tăng cường",
+            "Giảm tốc độ dây chuyền (nếu liên quan)",
+            "Thay thế công nhân thao tác sai (nếu xác định được ngay)",
+            "Cung cấp hướng dẫn công việc nhanh tại chỗ",
+            "Sử dụng phương án sản xuất thay thế (nếu có)"
+        ],
+        "Linh kiện": [
+            "Loại bỏ lô linh kiện nghi ngờ lỗi",
+            "Sử dụng linh kiện dự phòng đã được kiểm tra",
+            "Kiểm tra nhanh các linh kiện trước khi đưa vào sản xuất",
+            "Tạm thời chấp nhận sai số nhỏ (nếu không ảnh hưởng chức năng chính)",
+            "Liên hệ bộ phận kho/mua hàng để có linh kiện thay thế khẩn cấp",
+            "Phân tích nhanh lỗi trên linh kiện (nếu có thể)",
+            "Điều chỉnh quy trình lắp ráp để giảm thiểu tác động của lỗi linh kiện (nếu khả thi)",
+            "Kiểm tra điều kiện bảo quản linh kiện tại chỗ",
+            "Sàng lọc nhanh các linh kiện trong lô nghi ngờ"
+        ],
+        "Other": [
+            "Other",
+            "Liên hệ bộ phận kỹ thuật điện/khí nén/IT",
+            "Sử dụng nguồn điện/khí nén dự phòng (nếu có)",
+            "Thông báo và phối hợp với các bộ phận liên quan",
+            "Thực hiện theo quy trình ứng phó khẩn cấp",
+            "Ghi nhận chi tiết sự cố và thời gian",
+            "Kiểm tra các cảnh báo hệ thống",
+            "Sơ tán khu vực nguy hiểm (nếu cần)",
+            "Báo cáo cấp trên về tình hình",
+            "Tìm kiếm thông tin từ các ca làm việc trước"
+        ]
+    };
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const fileInput = document.getElementById('fileDinhKem');
+        const fileLabel = document.querySelector('.file-upload-label');
+
+        fileInput.addEventListener('change', function () {
+            // Xoá nội dung cũ
+            fileLabel.innerHTML = '';
+
+            if (this.files && this.files.length > 0) {
+                const ul = document.createElement('ul');
+
+                Array.from(this.files).forEach(file => {
+                    const li = document.createElement('li');
+                    li.textContent = file.name;
+                    ul.appendChild(li);
+                });
+
+                fileLabel.appendChild(ul);
+            } else {
+                fileLabel.textContent = 'Choose File | No file chosen';
+            }
+        });
+    });
+
+
+    function autoResize(textarea) {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    }
+
+    const ChiTietTV = document.getElementById('ChiTietTV');
+    const ChiTietTN = document.getElementById('ChiTietTN');
+
+    ChiTietTV.addEventListener('input', () => autoResize(ChiTietTV));
+    ChiTietTN.addEventListener('input', () => autoResize(ChiTietTN));
+
+    // Gọi hàm lần đầu để thiết lập chiều cao ban đầu nếu có nội dung
+    autoResize(ChiTietTV);
+    autoResize(ChiTietTN);
+
+    $(document).ready(function () {
+        function upLoadPL(selectedLon, selectedNho) {
+            var selectNho = $("#PhanLoaiDSTT_Nho");
+            selectNho.empty();
+            if (subOptions[selectedLon]) {
+                subOptions[selectedLon].forEach(function (item) {
+                    var isSelected = item === selectedNho ? "selected" : "";
+                    selectNho.append('<option value="' + item + '"' + isSelected + '>' + item + '</option>');
+                })
+            }
+        }
+
+        var selectLon = document.getElementById("PhanLoaiDSTT_Lon");
+        selectLon.value = "@Html.Raw(Model.PhanLoaiDSTT_Lon)";
+        upLoadPL("@Html.Raw(Model.PhanLoaiDSTT_Lon)", "@Html.Raw(Model.PhanLoaiDSTT_Nho)");
+        $("#PhanLoaiDSTT_Lon").on('change', function () {
+            var selectedLon = $(this).val();
+            upLoadPL(selectedLon, null);
+        })
+
+        var selectSk = document.getElementById("SoCungSK");
+        selectSk.value = "@Model.SoCungSuKien";
+    });
+</script>
+

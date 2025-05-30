@@ -1,0 +1,251 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+TABLE   tbl_KiemKe {
+   SoPhieu   nvarchar (50) [primary key]
+	 NguoiKiemKe   nvarchar (50)
+	 NgayKiemKe   date  
+	 GhiChu   nvarchar (max) 
+   MaLinhKien int [not null]
+   SoLuongThucTe int
+   SoLuongTrenHeThong int
+}
+	 
+TABLE   LinhKien {
+	 MaLinhKien   nvarchar (50) [primary key]
+	 TênLinhKien   nvarchar (max) 
+	 SoLuong   int  
+	 ViTriLuuTru   nvarchar (max) 
+	 NhaCungCap   nvarchar (max) 
+}
+
+TABLE  tbl_DetailLoi {
+	 ID   int  [primary key]
+	 Maloi   nvarchar (50) 
+	 PhanCap   nvarchar (50)  
+	 Model   nvarchar (50)  
+	 LoaiMay   nvarchar (50)  
+	 TieuDeTV   nvarchar (max)  
+	 TieuDeTN   nvarchar (max)  
+	 ThoiDiemPhatSinh   datetime  
+	 ThoiDiemBatDauLai   datetime  
+	 PhanLoaiHT_Lon   nvarchar (max)  
+	 PhanLoaiHT_Nho   nvarchar (max)  
+	 NguoiPhatHanh   nvarchar (50)  
+	 NguoiXNHTLoi   nvarchar (max)  
+	 DetailTV   nvarchar (max)  
+	 DetailTN   nvarchar (max)  
+	 LinkDinhKemFile   nvarchar (max)  
+	 SoCungSuKien   nvarchar (50)  
+	 TaiPhat   bit   
+	 TienDo   nvarchar (50)  
+	 NguoiDamNhiemChinh   nvarchar (50)  
+	 ThoiGianPhatHanh   datetime   
+	 NguoiUpDateNew   nvarchar (50)  
+	 TimeUpdateNew   datetime  
+	 NguoiDNGhiNhapNN   nvarchar (50)  
+	 NguoiDNGhiNhapDSTT   nvarchar (50)  
+	 NguoiDNGhiNhapDSCH   nvarchar (50)  
+	 NguoiDNPheDuyetDS   nvarchar (50)  
+	 NguoiDNGhiNhapHQ   nvarchar (50)  
+	 NguoiDNPheDuyetHQ   nvarchar (50)  
+	 SoNgayClose   int   
+}
+
+TABLE   tbl_HienTuong {
+	 ID   int   [primary key]
+	 MaLoi   nvarchar (50)  
+	 PhanCap   nvarchar (50)  
+	 Model   nvarchar (50)  
+	 LoaiMay   nvarchar (50)  
+	 TieuDeTV   nvarchar (max)  
+	 TieuDeTN   nvarchar (max)  
+	 ThoiDiemPhatSinh   nvarchar (50)  
+	 ThoiDiemBatDauLai   nvarchar (50)  
+	 PhanLoaiHT_Lon   nvarchar (max)  
+	 PhanLoaiHT_Nho   nvarchar (max)  
+	 NguoiXNHTLoi   nvarchar (max)  
+	 DetailTV   nvarchar (max)  
+	 DetailTN   nvarchar (max)  
+	 LinkDinhKemFile   nvarchar (max)  
+	 SoCungSuKien   nvarchar (50)  
+	 TrangThai   nvarchar (50)  
+	 NguoiUpdate   nvarchar (50)  
+	 TimeUpdate   datetime   
+   IDLoi int [not null]
+}
+
+TABLE  tbl_NguyenNhan {
+	 ID   int [primary key]
+	 MaLoi   nvarchar (50)  
+	 PhanLoaiNN_Lon   nvarchar (max)  
+	 PhanLoaiNN_Nho   nvarchar (max)  
+	 SoNgayClose   int   
+	 DealineCloseNN   datetime   
+	 DealineCloseDSTT   datetime   
+	 DealineGhiNhapDSCH   datetime   
+	 DealinePheDuyetDSCH   datetime   
+	 DealineGhiNhapHQ   datetime   
+	 DealinePheDuyetHQ   datetime   
+	 NguoiUpdate   nvarchar (50)  
+	 LinkFileDinhKem   nvarchar (max)  
+	 SoCungSuKien   nvarchar (50)  
+	 ChiTietTV   nvarchar (max)  
+	 ChiTietTN   nvarchar (max)  
+	 TimeUpdate   datetime   
+	 TrangThai   nvarchar (50)  
+   IDLoi int [not null]
+}
+
+TABLE  tbl_DoiSachTamThoi {
+	 ID   int  [primary key]
+	 MaLoi   nvarchar (50)  
+	 TimeStart   date   
+	 PhanLoaiDSTT_Lon   nvarchar (max)  
+	 PhanLoaiDSTT_Nho   nvarchar (max)  
+	 NguoiTH   nvarchar (max)  
+	 NguoiUpdate   nvarchar (50)  
+	 TimeUpdate   datetime   
+	 LinkFileDinhKem   nvarchar (max)  
+	 SoCungSuKien   nvarchar (50)  
+	 ChiTietTV   nvarchar (max)  
+	 ChiTietTN   nvarchar (max)  
+	 TrangThai   nvarchar (50)  
+   IDLoi int [not null]
+}
+
+TABLE  tbl_DoiSachCoHuu {
+	 ID   int    [primary key]
+	 MaLoi   nvarchar (50)  
+	 TimeStart   date   
+	 PhanLoaiDSCH_Lon   nvarchar (max)  
+	 PhanLoaiDSCH_Nho   nvarchar (max)  
+	 NguoiXN   nvarchar (max)  
+	 NguoiTH   nvarchar (max)  
+	 NguoiUpDate   nvarchar (50)  
+	 TimeUpDate   datetime   
+	 LinkFileDinhKem   nvarchar (max)  
+	 SoCungSuKien   nvarchar (50)  
+	 ChiTietTV   nvarchar (max)  
+	 ChiTietTN   nvarchar (max)  
+	 TrangThai   nvarchar (50)  
+  IDLoi int [not null]
+}
+
+TABLE    tbl_HieuQua {
+	 ID   int     [primary key]
+	 MaLoi   nvarchar (50)  
+	 TimeDoneHQ   date   
+	 NguoiXN   nvarchar (max)  
+	 NguoiUpdate   nvarchar (50)  
+	 TimeUpdate   datetime   
+	 LinkFileDinhKem   nvarchar (max)  
+	 SoCungSuKien   nvarchar (50)  
+	 ChiTietTV   nvarchar (max)  
+	 ChiTietTN   nvarchar (max)  
+	 TrangThai   nvarchar (50)  
+   IDLoi int [not null]
+}
+TABLE    tbl_History {
+	 ID   int     [primary key]
+	 MaLoi   nvarchar (50)  
+	 TimeUpDate   datetime   
+	 NguoiUpdate   nvarchar (50)  
+	 DetailUpdate   nvarchar (50)  
+   IDLoi int [not null]
+}
+TABLE    tbl_PhieuXuat {
+	 SoPhieu   nvarchar (50)    [primary key]
+	 NgayLap   date   
+	 NguoiTaoPhieu   nvarchar (50)  
+	 NguoiYeuCau   nvarchar (50)  
+	 NguoiPheDuyet   nvarchar (50)  
+	 NguoiCapNhat   nvarchar (50)  
+	 TimeUpDate   datetime   
+	 TrangThai   nvarchar (50)  
+}
+TABLE    tbl_ChiTietPhieuXuat {
+	 ID   int     [primary key]
+	 SoPhieu   nvarchar (50)  [not null]
+	 MaLinhKien   nvarchar (50)  [not null]
+	 SoLuong   int    
+}
+TABLE    tbl_PhieuNhap {
+	 SoPhieu   nvarchar (50)    [primary key]
+	 NgayLap   date   
+	 NguoiTaoPhieu   nvarchar (50)  
+	 NhaCungCap   nvarchar (max)  
+	 NguoiNhan   nvarchar (50)  
+	 NguoiCapNhat   nvarchar (50)  
+	 TimeUpdate   datetime   
+	 TrangThai   nvarchar (50)  
+}
+TABLE    tbl_ChiTietPhieuNhap {
+	 ID   int     [primary key]
+	 SoPhieu   nvarchar (50)  [not null]
+	 MaLinhKien   nvarchar (50)  [not null]
+	 SoLuong   int   
+}
+TABLE    tbl_LoaiMay {
+	 MaLoaiMay   nvarchar (50)    [primary key]
+	 TenLoaiMay   nvarchar (50)  
+}
+TABLE    tbl_PhongBan {
+	 MaPB   nvarchar (50)    [primary key]
+	 TenPB   nvarchar (50)  
+}
+TABLE    tbl_Model {
+	 MaModel   nvarchar (50)    [primary key]
+	 TenModel   nvarchar (50)  
+}
+TABLE    tbl_User {
+	 ADID   nvarchar (50)    [primary key]
+	 Name   nvarchar (50)  
+	 Mail   nvarchar (100)  
+	 MaPB   nvarchar (50)  
+	 Role_PhatHanhLoi   bit     
+	 Role_PheDuyet   bit     
+	 Role_NhanMailCC   bit     
+	 Role_QuanLyUser   bit     
+	 Role_XuatKho   bit     
+	 Role_NhapKho   bit     
+	 Role_KiemKe   bit     
+	 Password   nvarchar (50)    
+}
+// Table follows {
+//   following_user_id integer
+//   followed_user_id integer
+//   created_at timestamp
+// }
+
+// Table users {
+//   id integer [primary key]
+//   username varchar
+//   role varchar
+//   created_at timestamp
+// }
+
+// Table posts {
+//   id integer [primary key]
+//   title varchar
+//   body text [note: 'Content of the post']
+//   user_id integer [not null]
+//   status varchar
+//   created_at timestamp
+// }
+// Ref user_posts: posts.user_id > users.id // many-to-one
+// Ref: users.id < follows.following_user_id
+// Ref: users.id < follows.followed_user_id
+Ref a: tbl_HienTuong.IDLoi > tbl_DetailLoi.ID // many-to-one
+Ref a: tbl_NguyenNhan.IDLoi > tbl_DetailLoi.ID
+Ref a: tbl_DoiSachTamThoi.IDLoi > tbl_DetailLoi.ID
+Ref a: tbl_DoiSachCoHuu.IDLoi > tbl_DetailLoi.ID
+Ref a: tbl_HieuQua.IDLoi > tbl_DetailLoi.ID
+Ref a: tbl_History.IDLoi > tbl_DetailLoi.ID
+Ref b: tbl_ChiTietPhieuXuat.SoPhieu > tbl_PhieuXuat.SoPhieu
+Ref c: tbl_ChiTietPhieuXuat.MaLinhKien > LinhKien.MaLinhKien
+Ref b: tbl_ChiTietPhieuNhap.SoPhieu > tbl_PhieuNhap.SoPhieu
+Ref c: tbl_ChiTietPhieuNhap.MaLinhKien > LinhKien.MaLinhKien
+Ref d: tbl_KiemKe.MaLinhKien > LinhKien.MaLinhKien
+
+

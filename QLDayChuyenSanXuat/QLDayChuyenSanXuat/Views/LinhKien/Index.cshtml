@@ -1,0 +1,128 @@
+﻿@model IEnumerable<QLDayChuyenSanXuat.Models.LinhKien>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center;">Danh sách linh kiện</h2>
+
+<div style="display:flex; justify-content:space-between;">
+    <a href="@Url.Action("Create", "LinhKien")" class="btn" style="font-size:larger;"> +Tạo mới</a>
+    @*<form action="@Url.Action("Index", "LinhKien")" method="get">
+        <div style="display:flex;">
+            <span>Mã linh kiện</span>
+            <div style="display: flex; align-items: center; padding: 0 10px; border: 1px solid; border-radius: 20px; width: 300px;margin-left:20px;">
+                <input class="SoPhieuGet" name="MaLinhKien" type="text" placeholder="Nhập số phiếu..." style="border:none; flex:1;" />
+                <button type="submit" style="background:none;border:none;"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </form>*@
+    <a href="@Url.Action("DSPhieuKK", "LinhKien", new {sophieu = ""})" class="btn" style="font-size:larger;"> Kiểm kê</a>
+</div>
+@if (TempData["ThongBao"] != null)
+{
+    <div class="modal fade" id="ThongBaoModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="text-align:center;">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="modalTitle">Thông báo</h5>
+                </div>
+                <div class="modal-body" style="display:grid;">
+                    <div>
+                        <i class="fa fa-check-circle" style="background-color: green; color: white; border-radius: 50%; padding: 8px;font-size:50px;"></i>
+                    </div>
+                    @TempData["ThongBao"]
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#ThongBaoModal').modal('show');
+        });
+    </script>
+}
+<table class="table">
+    <tr>
+        <th></th>
+        <th>Mã linh kiện</th>
+        <th>
+            Tên linh kiện
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Vị trí lưu trữ
+        </th>
+        <th>
+            Nhà cung cấp
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <button type="button" style=" border: none; background: none; color: #00a3cc;" data-toggle="modal" data-target="#Modal-@item.MaLinhKien"><i class="fas fa-trash"></i></button>
+                <div id="Modal-@item.MaLinhKien" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color: #005266; color: white;">
+                                <h5>Bạn muốn xóa linh kiện này?</h5>
+                                <button type="button" class="close" data-dismiss="modal" style="color:white;">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table">
+                                    <tr>
+                                        <th>Mã linh kiện</th>
+                                        <td>@item.MaLinhKien</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Tên linh kiện</th>
+                                        <td>@item.TênLinhKien</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Số lượng</th>
+                                        <td>@item.SoLuong</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Vị trí lưu trữ</th>
+                                        <td>@item.ViTriLuuTru</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nhà cung cấp</th>
+                                        <td>@item.NhaCungCap</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                <a href="@Url.Action("Delete","LinhKien", new { id = item.MaLinhKien })" class="btn btn-primary">Đồng ý</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <a href="@Url.Action("Edit","LinhKien", new { id=item.MaLinhKien })" class="btn">@item.MaLinhKien</a>
+            </td>
+            <td>
+                @item.TênLinhKien
+            </td>
+            <td>
+                @item.SoLuong
+            </td>
+            <td>
+                @item.ViTriLuuTru
+            </td>
+            <td>
+                @item.NhaCungCap
+            </td>
+        </tr>
+    }
+
+</table>

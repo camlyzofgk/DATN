@@ -1,0 +1,106 @@
+﻿@model QLDayChuyenSanXuat.Models.tbl_User
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tbl_User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaPB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaPB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role_PhatHanhLoi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role_PhatHanhLoi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role_PheDuyet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role_PheDuyet)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role_QuanLyUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role_QuanLyUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role_XuatKho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role_XuatKho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role_NhapKho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role_NhapKho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role_KiemKe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role_KiemKe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

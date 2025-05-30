@@ -1,0 +1,165 @@
+﻿@model IEnumerable<QLDayChuyenSanXuat.Models.tbl_KiemKe>
+@using QLDayChuyenSanXuat.Models
+@{
+    ViewBag.Title = "KiemKe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    QLDayChuyenSX db = new QLDayChuyenSX();
+    var sophieu = ViewBag.SoPhieu as string;
+    var listLK = db.LinhKiens.ToList();
+}
+@if (TempData["ThongBao"] != null)
+{
+    <div class="modal fade" id="ThongBaoModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="text-align:center;">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="modalTitle">Thông báo</h5>
+                </div>
+                <div class="modal-body" style="display:grid;">
+                    <div>
+                        <i class="fa fa-check-circle" style="background-color: green; color: white; border-radius: 50%; padding: 8px;font-size:50px;"></i>
+                    </div>
+                    @TempData["ThongBao"]
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#ThongBaoModal').modal('show');
+        });
+    </script>
+}
+<h2 style="text-align:center;">Kiểm kê theo list linh kiện</h2>
+<div style="display:flex; justify-content:space-between;margin:1%;">
+    <form action="@Url.Action("KiemKe", "LinhKien")" method="get">
+        <div style="display:flex;">
+            <span>Số phiếu</span>
+            <div style="display: flex; align-items: center; padding: 0 10px; border: 1px solid; border-radius: 20px; width: 300px;margin-left:20px;">
+                <input class="SoPhieuGet" name="sophieu" type="text" placeholder="Nhập số phiếu..." style="border:none; flex:1;" value="@ViewBag.SoPhieu" />
+                <button type="submit" style="background:none;border:none;"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </form>
+    <a href="@Url.Action("DSPhieuKK","LinhKien")" class="btn" style="background-color:transparent;border:none;"> <i class="fa fa-list-ul"></i>&nbsp;Danh sách</a>
+</div>
+
+@using (Html.BeginForm("LuuKiemKe", "LinhKien", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <input name="sophieu" type="text" hidden class="SoPhieuPost" />
+    <table class="table">
+        <tr>
+            <th>Mã linh kiện</th>
+            <th>
+                Tên linh kiện
+            </th>
+            <th>
+                Số lượng trên hệ thống
+            </th>
+            <th>
+                Vị trí lưu trữ
+            </th>
+            <th>
+                Nhà cung cấp
+            </th>
+            <th>Số lượng thực tế</th>
+            <th>Chênh lệch</th>
+            <th>Người kiểm kê</th>
+            <th>Ghi chú</th>
+            <th>Trạng thái</th>
+        </tr>
+        @foreach (var item in listLK)
+        {
+            var KK = Model.Where(x => x.MaLinhKien == item.MaLinhKien).FirstOrDefault();
+            <tr>
+                <td>
+                    @item.MaLinhKien
+                </td>
+                <td>
+                    @item.TênLinhKien
+                </td>
+                <td>
+                    @item.SoLuong
+                    <input type="text" class="SoLuongHT" value="@item.SoLuong" hidden />
+                </td>
+                <td>
+                    @item.ViTriLuuTru
+                </td>
+                <td>
+                    @item.NhaCungCap
+                </td>
+
+                @if (KK != null && KK.TrangThai != null)
+                {
+                    <td>
+                        <input class="KK" type="text" name="SoLuongThucTe" value="@KK.SoLuongThucTe" readonly />
+                    </td>
+                    <td>
+                        <input class="KK" type="text" name="ChenhLech" value="@(KK.SoLuongThucTe - item.SoLuong)" readonly />
+                    </td>
+                    <td>
+                        <input class="KK" type="text" name="NguoiKiemKe" value="@KK.NguoiKiemKe" readonly />
+                    </td>
+                    <td>
+                        <input class="KK" type="text" name="GhiChu" value="@KK.GhiChu" />
+                    </td>
+                    <td>
+                        @KK.TrangThai
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <input type="text" name="MaLinhKien" value="@item.MaLinhKien" hidden />
+                        <input class="SoLuongThucTe" type="text" oninput="tinhChenhLech(this)" name="SoLuongThucTe_@item.MaLinhKien" style=" width: 50%; max-width: 50%; " />
+                    </td>
+                    <td>
+                        <input class="ChenhLech" type="text" readonly style=" width: 50%; max-width: 50%; " />
+                    </td>
+                    <td>
+                        <input class="KK" type="text" name="NguoiKiemKe_@item.MaLinhKien" value="@Session["ADID"]" />
+                    </td>
+                    <td>
+                        <input class="KK" type="text" name="GhiChu_@item.MaLinhKien" />
+                    </td>
+                    <td>
+                        <div style="display:flex;">
+                            <button type="submit" name="action" value="OK_@item.MaLinhKien" class="btn" style="background-color:lightgreen;">OK</button>
+                            <button type="submit" name="action" value="NG_@item.MaLinhKien" class="btn" style="background-color:red;">NG</button>
+                        </div>
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+}
+<style>
+    .KK {
+        width: 50%;
+        max-width: 50%;
+    }
+</style>
+<script>
+    function tinhChenhLech(input) {
+        var row = input.closest("tr"); // Tìm dòng chứa input hiện tại
+        var soHeThong = parseInt(row.querySelector(".SoLuongHT").value) || 0;
+        var soThucTe = parseInt(row.querySelector(".SoLuongThucTe").value) || 0;
+        var chenhLech = soThucTe - soHeThong;
+        row.querySelector(".ChenhLech").value = chenhLech;
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+        const inputGet = document.querySelector(".SoPhieuGet");
+        const inputPost = document.querySelector(".SoPhieuPost");
+
+        if (inputGet && inputPost) {
+            // Cập nhật khi trang load lần đầu
+            inputPost.value = inputGet.value;
+
+            // Cập nhật mỗi khi người dùng gõ vào input
+            inputGet.addEventListener("input", function () {
+                inputPost.value = inputGet.value;
+            });
+        }
+    });
+</script>

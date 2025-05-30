@@ -1,0 +1,173 @@
+﻿@using QLDayChuyenSanXuat.Models
+@model IEnumerable<string>
+@{
+    ViewBag.Title = "DSPhieuKK";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    QLDayChuyenSX db = new QLDayChuyenSX();
+}
+@if (TempData["ThongBao"] != null)
+{
+    <div class="modal fade" id="ThongBaoModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="text-align:center;">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="modalTitle">Thông báo</h5>
+                </div>
+                <div class="modal-body" style="display:grid;">
+                    <div>
+                        <i class="fa fa-check-circle" style="background-color: green; color: white; border-radius: 50%; padding: 8px;font-size:50px;"></i>
+                    </div>
+                    @TempData["ThongBao"]
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#ThongBaoModal').modal('show');
+        });
+    </script>
+}
+<div style="margin:1%;">
+    <div style="display:flex;justify-content:space-between;margin-bottom:20px;">
+        <div style="display:flex;justify-content:left;width:25%">
+        </div>
+        <a href="@Url.Action("KiemKe","LinhKien")" class="btn btn-danger">Tạo Phiếu Kiểm Kê</a>
+        <form action="@Url.Action("Index","PhieuNhap")" method="get">
+            <div style="display: flex; align-items: center; padding: 0 10px; border: 1px solid; border-radius: 20px;">
+                <input name="sophieu" type="text" placeholder="Tìm kiếm..." style="border:none;" />
+                <button style="background:none;border:none;"><i class="fa fa-search"></i></button>
+            </div>
+        </form>
+    </div>
+    <div>
+        <table class="table-container">
+            <tr>
+                <th>Mã phiếu</th>
+                <th>Trạng thái</th>
+                <th>Ngày kiểm kê</th>
+                <th>Người kiểm kê</th>
+            </tr>
+            @*<tr id="rowFilter" style="display:none">
+                    <td></td>
+                    <td>
+                        <select name="TrangThai" style="width:100%;" onchange="filterChanged(this)">
+                            <option value="">-Chọn-</option>
+                            <option value="All">Tất cả</option>
+                            @foreach (var item in trangThai)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                    </td>
+                    <td></td>
+                    <td>
+                        <select name="PhongBan" style="width:100%;" onchange="filterChanged(this)">
+                            <option value="">-Chọn-</option>
+                            <option value="All">Tất cả</option>
+                            @foreach (var item in listPB)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <select name="NguoiTP" style="width:100%;" onchange="filterChanged(this)">
+                            <option value="">-Chọn-</option>
+                            <option value="All">Tất cả</option>
+                            @foreach (var item in nguoiTaoDon)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <select name="NguoiNhan" style="width:100%;" onchange="filterChanged(this)">
+                            <option value="">-Chọn-</option>
+                            <option value="All">Tất cả</option>
+                            @foreach (var item in adIds)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <select name="NguoiUpdate" style="width:100%;" onchange="filterChanged(this)">
+                            <option value="">-Chọn-</option>
+                            <option value="All">Tất cả</option>
+                            @foreach (var item in nguoiUpdate)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                    </td>
+                    <td></td>
+                </tr>*@
+            @foreach (var item in Model)
+            {
+                var ttPhieu = db.tbl_KiemKe.Where(x => x.SoPhieu == item);
+                var lisLK = db.LinhKiens.Count();
+                var phieuCuoi = ttPhieu.OrderByDescending(x => x.NgayKiemKe).FirstOrDefault();
+                <tr>
+                    <td><a href="@Url.Action("KiemKe", "LinhKien", new {sophieu = item})" class="btn">@item</a></td>
+                    @if (ttPhieu.Count() == lisLK)
+                    {
+                        <td>Đã hoàn thành</td>
+                    }
+                    else
+                    {
+                        <td>Chưa hoàn thành</td>
+                    }
+                    <td>@(phieuCuoi.NgayKiemKe.HasValue ? phieuCuoi.NgayKiemKe.Value.ToString("dd-MM-yyyy") : "")</td>
+                    <td>@phieuCuoi.NguoiKiemKe</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<style>
+    .TienDo {
+        font-size: 17px;
+        text-decoration: none;
+        border: 1px solid #f2f2f2;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #66ccff;
+        text-align: center;
+        color: honeydew;
+    }
+</style>
+<script>
+    function rowFilterr() {
+        var row = document.getElementById("rowFilter");
+        if (row.style.display === "none" || row.style.display === "") {
+            row.style.display = "table-row";
+        } else {
+            row.style.display = "none";
+        }
+    }
+    function filterChanged(select) {
+        const value = select.value;
+        const url = new URL(window.location.href);
+        url.searchParams.set(select.name, value);
+        window.location.href = url.toString();
+    }
+
+</script>

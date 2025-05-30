@@ -1,0 +1,328 @@
+﻿@model QLDayChuyenSanXuat.Models.tbl_PhieuNhap
+@using QLDayChuyenSanXuat.Models
+@using Newtonsoft.Json
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    QLDayChuyenSX db = new QLDayChuyenSX();
+    var lisPB = db.tbl_PhongBan.Select(x => x.MaPB).ToList();
+    var PBNN = db.tbl_User.Where(x => x.ADID == Model.NguoiNhan).FirstOrDefault();
+    var chiTietList = ViewBag.ChiTiet as IEnumerable<dynamic>;
+    var linhKienList = ViewBag.LinhKienList as IEnumerable<dynamic>;
+
+}
+
+<div class="conten">
+    <div class="header" style="text-align:center;color:red;">
+        <h4>Phiếu nhập kho</h4>
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div style="display:flex;">
+            <div class="left-column">
+                <div class="row_PHL">
+                    <span class="coll_PHL">Số phiếu <span style="color:red;">*</span></span>
+                    <input class="col2" type="text" name="SoPhieu" value="@Model.SoPhieu" />
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Ngày lập</span>
+                    <input required class="col2" type="datetime" name="NgayLap" value="@(Model.NgayLap.HasValue ? Model.NgayLap.Value.ToString("dd-MM-yyyy") : "")" readonly />
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Người tạo phiếu</span>
+                    <input class="col2" type="text" readonly name="NguoiTaoPhieu" value="@Model.NguoiTaoPhieu" />
+                </div>
+                <div class="row_PHL">
+                    <span class="coll_PHL">Người cập nhật</span>
+                    <input class="col2" type="text" readonly name="NguoiCapNhat" value="@Session["ADID"]" />
+                </div>
+            </div>
+            <div class="right-column">
+                <div class="row_PHL">
+                    <span class="coll_PHL">Người nhận <span style="color:red;">*</span></span>
+                    <div class="col2">
+                        <div class="row_PHL">
+                            <span class="coll_PHL">Phòng ban</span>
+                            <select required class="col2" name="PhongBan" id="PhongBan">
+                                <option value="">-Chọn-</option>
+                                @foreach (var item in lisPB)
+                                {
+                                    <option value="@item">@item</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="row_PHL">
+                            <span class="coll_PHL">Email<span style="color:red;">*</span></span>
+                            <select required class="col2" name="EmailNN" id="Email">
+                                <option value="">-Chọn-</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style=" max-width: 100%; width: 100%;">
+            <table id="tableLinhKien" style=" max-width: 100%; width: 100%;" class="table">
+                <thead>
+                    <tr>
+                        <th>Mã linh kiện</th>
+                        <th>Tên linh kiện</th>
+                        <th>Số lượng</th>
+                        <th>Vị trí lưu trữ</th>
+                        <th>Nhà cung cấp</th>
+                        @if (Model.TrangThai == "Đã tạo")
+                        {
+                            <th>
+                                <button type="button" id="btnAddRow">+</button>
+                            </th>
+                        }
+                        else
+                        {
+                            <th></th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (chiTietList != null)
+                    {
+                        foreach (var item in chiTietList)
+                        {
+                            <tr>
+                                <td>
+                                    <select name="MaLK[]" class="maLK" required>
+                                        <option value="">--Chọn--</option>
+                                        @foreach (var lk in linhKienList)
+                                        {
+                                            <option value="@lk.MaLinhKien" @(lk.MaLinhKien == item.MaLinhKien ? "selected" : "")>@lk.MaLinhKien</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td><input type="text" class="tenLK" name="TenLK[]" value="@item.TenLinhKien" readonly /></td>
+                                <td><input required type="number" name="SoLuong[]" value="@item.SoLuong" min="1" /></td>
+                                <td><input type="text" class="viTri" name="ViTri[]" value="@item.ViTriLuuTru" readonly /></td>
+                                <td><input type="text" class="nhaCC" name="NhaCC[]" value="@item.NhaCungCap" readonly /></td>
+                                @if (Model.TrangThai == "Đã tạo")
+                                {
+                                    <td><button type="button" class="btnRemove">X</button></td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="footer">
+            @if (( (string)Session["ADID"] == Model.NguoiTaoPhieu) && Model.TrangThai == "Đã tạo")
+            {
+                <input type="submit" value="Cập nhật" class="btn report-button" />
+                <a href="@Url.Action("UpdateTrangThai", "PhieuNhap", new { sophieu = Model.SoPhieu, nguoiUpdate = (string)Session["ADID"], noidung = "Hủy phiếu"})" class="btn" style="background-color: gray; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; "><i class="fa fa-pen-nib"></i>&nbsp;Hủy phiếu</a>
+            }
+            @if (Model.TrangThai == "Đã nhận" && (string)Session["ADID"] == Model.NguoiNhan)
+            {
+                <input type="submit" value="Đã nhập kho" class="btn" style="background-color:lightgreen;border:none;margin-right:5px;" />
+            }
+
+        </div>
+    }
+    <div class="footer">
+        @if (Model.TrangThai == "Đã tạo" && (string)Session["ADID"] == Model.NguoiNhan)
+        {
+            <a href="@Url.Action("UpdateTrangThai", "PhieuNhap", new { sophieu = Model.SoPhieu, nguoiUpdate = (string)Session["ADID"], noidung = "Đã nhận" })" class="btn" style="background-color: lightgreen; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;"><i class="fa fa-pen-nib"></i>&nbsp;Đã nhận</a>
+        }
+    </div>
+
+</div>
+
+<div style=" color: cornflowerblue; font-size: large;">
+    &nbsp;&nbsp;<i class="fas fa-arrow-left"></i>&nbsp;<a href="@Url.Action("Index", "PhieuNhap")" style=" color: cornflowerblue;">Back to list</a>
+</div>
+<style>
+    .row_PHL {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .coll_PHL {
+        width: 30%;
+        display: block;
+        margin-right: 5px;
+        font-weight: bold;
+        color: black;
+    }
+
+    .col2 {
+        max-width: 70%;
+        width: 70%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .conten {
+        margin: 1% 5%;
+        border-radius: 10px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+    }
+
+    .header {
+        align-items: center;
+        border-bottom: 1px solid black;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+
+    .left-column, .right-column {
+        width: 50%;
+        padding: 10px;
+        /*flex: 1;*/
+    }
+
+    .left-column {
+        margin-right: 3%;
+    }
+
+
+
+    .footer {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .report-button {
+        background-color: #dc3545; /* Màu đỏ tương tự */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+        .report-button:hover {
+            background-color: #c82333;
+        }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $('form').submit(function (e) {
+            var rowCount = $('#tableLinhKien tbody tr').length;
+            if (rowCount === 0) {
+                alert("Vui lòng thêm ít nhất một linh kiện vào phiếu nhập!");
+                e.preventDefault(); // Ngăn submit form
+            }
+        });
+        function Email(maPB, eMail, selected) {
+        if (maPB) {
+            // If a department is selected, make the AJAX call to get the emails
+            $.ajax({
+                url: '@Url.Action("EmailPD", "DetailLoi")',  // Replace with your actual controller action name and controller
+                type: 'GET',
+                data: { MaPB: maPB },
+                success: function (response) {
+                    if (response.success) {
+                        var emails = response.emails;
+                        var emailSelect = $(eMail);
+                        emailSelect.empty();  // Clear the existing options
+                        emailSelect.append('<option value="">-Chọn-</option>');  // Reset to default option
+
+                        // Append each email as an option to the email dropdown
+                        $.each(emails, function (index, email) {
+                            var isSelected = email === selected ? 'selected' : '';
+                            emailSelect.append('<option value="' + email + '"' + isSelected +'>' + email + '</option>');
+                        });
+                    }
+                }
+            });
+        }
+        }
+
+        function changeEmail(maPB, eMail) {
+        if (maPB) {
+            // If a department is selected, make the AJAX call to get the emails
+            $.ajax({
+                url: '@Url.Action("EmailPD", "DetailLoi")',  // Replace with your actual controller action name and controller
+                type: 'GET',
+                data: { MaPB: maPB },
+                success: function (response) {
+                    if (response.success) {
+                        var emails = response.emails;
+                        var emailSelect = $(eMail);
+                        emailSelect.empty();  // Clear the existing options
+                        emailSelect.append('<option value="">-Chọn-</option>');  // Reset to default option
+
+                        // Append each email as an option to the email dropdown
+                        $.each(emails, function (index, email) {
+                            emailSelect.append('<option value="' + email + '">' + email + '</option>');
+                        });
+                    }
+                }
+            });
+        }
+        }
+
+
+        var selectedPBYC = document.getElementById("PhongBan");
+        selectedPBYC.value = "@Html.Raw(PBNN.MaPB)";
+        Email("@Html.Raw(PBNN.MaPB)", "#Email", "@Html.Raw(PBNN.Mail)");
+
+        $('#PhongBan').change(function () {
+            var maPB = $(this).val();  // Get the selected department value
+            changeEmail(maPB, null);
+        });
+
+
+    var linhKienData = @Html.Raw(JsonConvert.SerializeObject(ViewBag.LinhKienList));
+
+        $('#btnAddRow').click(function () {
+            var selectHtml = '<select required name="MaLK[]" class="maLK"><option value="">--Chọn--</option>';
+            linhKienData.forEach(function (item) {
+                selectHtml += `<option value="${item.MaLinhKien}">${item.MaLinhKien}</option>`;
+            });
+            selectHtml += '</select>';
+
+            var row = `
+                <tr>
+                    <td>${selectHtml}</td>
+                    <td><input type="text"  class="tenLK" readonly /></td>
+                    <td><input required type="number"name="SoLuong[]" name="SoLuong" min="1" required /></td>
+                    <td><input type="text" class="viTri" readonly /></td>
+                    <td><input type="text" class="nhaCC" readonly /></td>
+                    <td><button type="button" class="btnRemove">X</button></td>
+                </tr>
+            `;
+            $('#tableLinhKien tbody').append(row);
+        });
+
+        // Delegate select change
+        $('#tableLinhKien').on('change', '.maLK', function () {
+            var selectedMa = $(this).val();
+            var row = $(this).closest('tr');
+            var data = linhKienData.find(x => x.MaLinhKien === selectedMa);
+            if (data) {
+                row.find('.tenLK').val(data.TênLinhKien);
+                row.find('.viTri').val(data.ViTriLuuTru);
+                row.find('.nhaCC').val(data.NhaCungCap);
+            } else {
+                row.find('.tenLK').val('');
+                row.find('.viTri').val('');
+                row.find('.viTri').val('');
+            }
+        });
+
+        // Remove row
+        $('#tableLinhKien').on('click', '.btnRemove', function () {
+            $(this).closest('tr').remove();
+        });
+});
+</script>

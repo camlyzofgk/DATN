@@ -1,0 +1,63 @@
+﻿@model IEnumerable<QLDayChuyenSanXuat.Models.tbl_DoiSachCoHuu>
+@using QLDayChuyenSanXuat.Models
+@{
+    ViewBag.Title = "LichSuDSCH";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    QLDayChuyenSX db = new QLDayChuyenSX();
+    var DSCH = Model.FirstOrDefault();
+    var detailLoi = db.tbl_DetailLoi.Where(x => x.Maloi == DSCH.MaLoi).FirstOrDefault();
+    var HotenNDNPDDS = db.tbl_User.Where(x => x.ADID == detailLoi.NguoiDNPheDuyetDS).FirstOrDefault().Name;
+}
+<div style="display: flex; justify-content: space-between; border-bottom: 1px solid black;padding:10px 0;margin:10px;">
+    <h4>Lịch sự cập nhật đối sách cố hữu lỗi @DSCH.MaLoi</h4>
+    <div style="display:flex;">
+        <a href="@Url.Action("Index","DetailLoi")" class="btn" style="background-color:transparent;border:none;"> <i class="fa fa-list-ul"></i>&nbsp;Danh sách</a>
+        <a href="@Url.Action("Details", "DetailLoi", new {id = detailLoi.ID})" class="btn" style="background-color:transparent;border:none;"><i class="fa fa-info-circle"></i>&nbsp;Chi tiết</a>
+        <a href="@Url.Action("lichSu", "DetailLoi", new {maloi = detailLoi.Maloi})" class="btn" style="background-color:transparent;border:none;"><i class="fa fa-clock-o"></i>&nbsp;Lịch sử</a>
+    </div>
+</div>
+@foreach (var item in Model)
+{
+    <div style="margin:1%;">
+        <div style="display:flex;justify-content:space-between;border-bottom:1px solid black;padding:5px 0; margin-top:10px;">
+            <h5><i class="fa fa-clock-o"></i>&nbsp;@item.TimeUpDate</h5>
+        </div>
+        <div style="display:flex;margin:0 10px;">
+            <div style="width:60%;margin-right:3%;">
+                <h6>Chi tiết tiếng Việt</h6>
+                <textarea id="DSCHTV" style="max-width: 100%; width: 100%; white-space: pre-wrap; overflow: hidden; resize: none;" readonly>@item.ChiTietTV</textarea>
+                <h6>Chi tiết tiếng Nhật</h6>
+                <textarea id="DSCHTN" style="max-width: 100%; width: 100%; white-space: pre-wrap; overflow: hidden; resize: none;" readonly>@item.ChiTietTN</textarea>
+            </div>
+            <div style="width:40%">
+                <ul>
+                    <li>Thời gian bắt đầu - <span style="color: royalblue;">@item.TimeStart</span></li>
+                    <li>Phân loại đối sách - <span style="color: royalblue;">@item.PhanLoaiDSCH_Lon/ @item.PhanLoaiDSCH_Nho</span></li>
+                    <li>Người thực hiện đối sách - <span style="color: royalblue;">@item.NguoiTH</span></li>
+                    <li>Người cập nhật - <span style="color: royalblue;">@item.NguoiUpDate</span></li>
+                    <li>Số cùng sự kiện - <span style="color: royalblue;">@item.SoCungSuKien</span></li>
+                    <li>Trạng thái - <span style="color: royalblue;">@item.TrangThai</span></li>
+                </ul>
+                @if (item.TrangThai == "Hoàn thành")
+                {
+                    <span style="color: red; padding: 5px; border: 2px solid red; margin: 0 25px;">担当: @HotenNDNPDDS</span>
+                }
+            </div>
+        </div>
+    </div>
+}
+<script>
+    function autoResize(textarea) {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    }
+    const DSCHTV = document.getElementById('DSCHTV');
+    const DSCHTN = document.getElementById('DSCHTN');
+
+    DSCHTV.addEventListener('input', () => autoResize(DSCHTV));
+    DSCHTN.addEventListener('input', () => autoResize(DSCHTN));
+
+    // Gọi hàm lần đầu để thiết lập chiều cao ban đầu nếu có nội dung
+    autoResize(DSCHTV);
+    autoResize(DSCHTN);
+</script>

@@ -1,0 +1,117 @@
+﻿@using Newtonsoft.Json
+@using QLDayChuyenSanXuat.Models
+@{
+    ViewBag.Title = "BieuDoTienDo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    QLDayChuyenSX db = new QLDayChuyenSX();
+    var listModel = db.tbl_Model.Select(x => x.MaModel).ToList();
+    var listPB = db.tbl_PhongBan.Select(x => x.MaPB).ToList();
+}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/bar.js"></script>
+<form action="~/DetailLoi/BieuDoTienDo">
+    <div style="margin:1%; text-align:center;">
+        <span>Model</span>
+        <select name="Model" style="width: 30%; margin: 0 2%;">
+            <option value="">-Chọn-</option>
+            @foreach (var item in listModel)
+            {
+                <option value="@item">@item</option>
+            }
+        </select>
+        <span>Phòng ban</span>
+        <select name="PBan" style="width: 30%; margin: 0 2%;">
+            <option value="">-Chọn-</option>
+            @foreach (var item in listPB)
+            {
+                <option value="@item">@item</option>
+            }
+        </select>
+        <button type="submit">Vẽ biểu đồ</button>
+    </div>
+</form>
+<h4 style="text-align:center; margin:1% 0;">Biểu đồ tiến độ Model @ViewBag.Model Phòng ban @ViewBag.PB</h4>
+<div id="container" style="margin: 1%;"></div>
+
+<script>
+    var categories = @Html.Raw(JsonConvert.SerializeObject(ViewBag.listLoi));
+    var DangDTNN = @Html.Raw(JsonConvert.SerializeObject(ViewBag.DangDTNN));
+    var HTDTNN = @Html.Raw(JsonConvert.SerializeObject(ViewBag.HTDTNN));
+    var HTDSTT = @Html.Raw(JsonConvert.SerializeObject(ViewBag.HTDSTT));
+    var ChoPDDS = @Html.Raw(JsonConvert.SerializeObject(ViewBag.ChoPDDS));
+    var HTDSCH = @Html.Raw(JsonConvert.SerializeObject(ViewBag.HTDSCH));
+    var ChoPDHQ = @Html.Raw(JsonConvert.SerializeObject(ViewBag.ChoPDHQ));
+    var HTHQ = @Html.Raw(JsonConvert.SerializeObject(ViewBag.HTHQ));
+    Highcharts.chart('container', {
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Tiến độ xử lý các lỗi'
+        },
+        xAxis: {
+            categories: categories
+            ,
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            max: 7,
+            tickInterval: 1,
+            title: {
+                text: 'Số bước đã hoàn thành',
+                align: 'high'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' bước đã hoàn thành'
+        },
+        plotOptions: {
+            series: {
+                stacking: 'normal'
+            }
+        },
+        legend: {
+            reversed: true
+        },
+        series: [
+            {
+                name: 'Bước 1: Điều tra nguyên nhân',
+                data: DangDTNN,
+                color: '#f94144'
+            },
+            {
+                name: 'Bước 2: Hoàn thành điều tra',
+                data: HTDTNN,
+                color: '#f3722c'
+            },
+            {
+                name: 'Bước 3: Đối sách tạm thời',
+                data: HTDSTT,
+                color: '#f8961e'
+            },
+            {
+                name: 'Bước 4: Chờ phê duyệt đối sách cố hữu',
+                data: ChoPDDS,
+                color: '#f9844a'
+            },
+            {
+                name: 'Bước 5: Hoàn thành đối sách cố hữu',
+                data: HTDSCH,
+                color: '#f9c74f'
+            },
+            {
+                name: 'Bước 6: Chờ phê duyệt hiệu quả',
+                data: ChoPDHQ,
+                color: '#90be6d'
+            },
+            {
+                name: 'Bước 7: Hoàn thành hiệu quả đối sách',
+                data: HTHQ,
+                color: '#43aa8b'
+            }
+        ]
+    });
+</script>

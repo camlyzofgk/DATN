@@ -1,0 +1,138 @@
+﻿@model QLDayChuyenSanXuat.Models.tbl_User
+@using QLDayChuyenSanXuat.Models
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    QLDayChuyenSX db = new QLDayChuyenSX();
+    var listPB = db.tbl_PhongBan.Select(x => x.MaPB).ToList();
+
+}
+
+<style>
+    .dong {
+        margin: 3% 5%;
+        display: flex;
+        height: 8%;
+    }
+
+    .cot1 {
+        max-width: 30%;
+        width: 30%;
+        display: block;
+        font-weight: bold;
+    }
+
+    .cot2 {
+        width: 70%;
+        max-width: 70%;
+        border-radius: 5px;
+        border: 1px solid gray;
+    }
+
+    .cot3 {
+        width: 70%;
+        text-align: center;
+    }
+
+    .check {
+        width: 25px;
+        height: 25px;
+    }
+</style>
+
+<div style="text-align: center; margin: 15px; border-bottom: 2px solid gray; color: #008080;">
+    <h4>Tạo User mới</h4>
+</div>
+
+
+@using (Html.BeginForm("Create", "QLUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div style="margin:15px; display:flex;">
+        <div style="width:50%;margin-right:5%;">
+            <div style=" text-align: center; margin: 20px; padding: 5px; background-color: #33cccc; color: white;">
+                <h5>Thông tin tài khoản</h5>
+            </div>
+            <div class="dong">
+                <span class="cot1">ADID <span style="color:red;">*</span></span>
+                <input class="cot2" type="text" name="ADID" />
+            </div>
+            <div class="dong">
+                <span class="cot1">Họ và tên <span style="color:red;">*</span></span>
+                <input class="cot2" type="text" name="Name" />
+            </div>
+            <div class="dong">
+                <span class="cot1">Mail <span style="color:red;">*</span></span>
+                <input class="cot2" type="text" name="Mail" />
+            </div>
+            <div class="dong">
+                <span class="cot1">Phòng ban <span style="color:red;">*</span></span>
+                <select class="cot2" name="MaPB">
+                    <option value="">-Chọn-</option>
+                    @foreach (var item in listPB)
+                    {
+                        <option>@item</option>
+                    }
+                </select>
+            </div>
+            <div class="dong">
+                <span class="cot1">Password <span style="color:red;">*</span></span>
+                <input class="cot2" type="text" name="Password" />
+            </div>
+        </div>
+        <div style="width:50%;">
+            <div style=" text-align: center; margin: 20px; padding: 5px; background-color: #33cccc; color: white;">
+                <h5>Thông tin quyền</h5>
+            </div>
+            <div class="dong">
+                <span class="cot1">Quyền phát hành lỗi</span>
+                <div class="cot3">
+                    @Html.CheckBoxFor(model => model.Role_PhatHanhLoi, new { @class = "check" })
+                </div>
+            </div>
+            <div class="dong">
+                <span class="cot1">Quyền phê duyệt</span>
+                <div class="cot3">
+                    @Html.CheckBoxFor(model => model.Role_PheDuyet, new { @class = "check" })
+                </div>
+            </div>
+            <div class="dong">
+                <span class="cot1">Quyền quản lý User</span>
+                <div class="cot3">
+                    @Html.CheckBoxFor(model => model.Role_QuanLyUser, new { @class = "check" })
+                </div>
+            </div>
+            <div class="dong">
+                <span class="cot1">Quyền nhập kho</span>
+                <div class="cot3">
+                    @Html.CheckBoxFor(model => model.Role_NhapKho, new { @class = "check" })
+                </div>
+            </div>
+            <div class="dong">
+                <span class="cot1">Quyền nhập kho</span>
+                <div class="cot3">
+                    @Html.CheckBoxFor(model => model.Role_XuatKho, new { @class = "check" })
+                </div>
+            </div>
+            <div class="dong">
+                <span class="cot1">Quyền kiểm kê</span>
+                <div class="cot3">
+                    @Html.CheckBoxFor(model => model.Role_KiemKe, new { @class = "check" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align:center;margin:20px;">
+        <input type="submit" value="Tạo mới" class="btn btn-primary" />
+    </div>
+
+}
+
+<div style=" color: cornflowerblue; font-size: large;">
+    &nbsp;&nbsp;<i class="fas fa-arrow-left"></i>&nbsp;<a href="@Url.Action("Index", "QLUser")" style=" color: cornflowerblue;">Back to list</a>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

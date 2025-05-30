@@ -1,0 +1,302 @@
+﻿@model IEnumerable<QLDayChuyenSanXuat.Models.tbl_DetailLoi>
+@using QLDayChuyenSanXuat.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    QLDayChuyenSX db = new QLDayChuyenSX();
+    var all = db.tbl_DetailLoi.Count();
+    var DTNN = db.tbl_DetailLoi.Where(x => x.TienDo == "Đang điều tra nguyên nhân").Count();
+    var HTNN = db.tbl_DetailLoi.Where(x => x.TienDo == "Hoàn thành điều tra nguyên nhân").Count();
+    var HTDSTT = db.tbl_DetailLoi.Where(x => x.TienDo == "Hoàn thành đối sách tạm thời").Count();
+    var CPDDS = db.tbl_DetailLoi.Where(x => x.TienDo == "Chờ phê duyệt đối sách cố hữu").Count();
+    var HTDS = db.tbl_DetailLoi.Where(x => x.TienDo == "Hoàn thành đối sách cố hữu").Count();
+    var CPDHQ = db.tbl_DetailLoi.Where(x => x.TienDo == "Chờ phê duyệt hiệu quả").Count();
+    var HTHQ = db.tbl_DetailLoi.Where(x => x.TienDo == "Close").Count();
+    var TaiPhat = db.tbl_DetailLoi.Where(x => x.TaiPhat == true).Count();
+    var DangChoDich = db.tbl_DetailLoi.Where(x => x.TienDo == "Đang điều tra nguyên nhân").Count();
+    var lisModel = Model.Select(x => x.Model).Distinct().ToList();
+    var lisLoaiMay = Model.Select(x => x.LoaiMay).Distinct().ToList();
+    var lisHTL = Model.Select(x => x.PhanLoaiHT_Lon).Distinct().ToList();
+    var lisHTN = Model.Select(x => x.PhanLoaiHT_Nho).Distinct().ToList();
+
+    var adIds = Model.Select(x => x.NguoiDamNhiemChinh).Distinct().ToList();
+    var adUpdate = Model.Select(x => x.NguoiUpDateNew).Distinct().ToList();
+    var listPB = db.tbl_User.Where(u => adIds.Contains(u.ADID)).Select(u => u.MaPB).ToList();
+
+    var ADID = (string)Session["ADID"];
+    var PHL = db.tbl_User.Where(x => x.ADID == ADID).FirstOrDefault().Role_PhatHanhLoi;
+}
+
+<style>
+    .TienDo {
+        font-size: 17px;
+        text-decoration: none;
+        border: 1px solid #f2f2f2;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #66ccff;
+        text-align: center;
+        color: honeydew;
+    }
+</style>
+@if (TempData["LoginSuccess"] != null)
+{
+    <div class="modal fade" id="loginSuccessModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="text-align:center;">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="modalTitle">Thông báo</h5>
+                </div>
+                <div class="modal-body" style="display:grid;">
+                    <div>
+                        <i class="fa fa-check-circle" style="background-color: green; color: white; border-radius: 50%; padding: 8px;font-size:50px;"></i>
+                    </div>
+                    @TempData["LoginSuccess"]
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#loginSuccessModal').modal('show');
+        });
+    </script>
+}
+@if (TempData["ThongBao"] != null)
+{
+    <div class="modal fade" id="loginSuccessModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="text-align:center;">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="modalTitle">Thông báo</h5>
+                </div>
+                <div class="modal-body" style="display:grid;">
+                    <div>
+                        <i class="fa fa-check-circle" style="background-color: green; color: white; border-radius: 50%; padding: 8px;font-size:50px;"></i>
+                    </div>
+                    @TempData["ThongBao"]
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#loginSuccessModal').modal('show');
+        });
+    </script>
+}
+
+<div style="margin:1%;">
+    <div style="display: flex; justify-content: center; text-align: center; margin: 10px 0; border-bottom: 2px solid black; padding: 10px 0; border-radius: 5px;">
+        <a style="color: black;" class="TienDo" href="@Url.Action("Index", "DetailLoi", new {TienDo = "All"})">Tổng thể <br />(@all)</a>
+        <a style="color: red;" class="TienDo" href="@Url.Action("Index", "DetailLoi", new {TienDo = "Đang điều tra nguyên nhân"})">Đang điều tra nguyên nhân <br />(@DTNN)</a>
+        <a style="color: orange;" class="TienDo" href="@Url.Action("Index", "DetailLoi", new {TienDo = "Hoàn thành điều tra nguyên nhân"})">Hoàn thành điều tra nguyên nhân <br />(@HTNN)</a>
+        <a style="color: darkcyan;" class="TienDo" href="@Url.Action("Index", "DetailLoi", new {TienDo = "Hoàn thành đối sách tạm thời"})">Hoàn thành đối sách tạm thời <br />(@HTDSTT)</a>
+        <a style="color: crimson; " class="TienDo" href="@Url.Action("Index", "DetailLoi", new {TienDo = "TaiPhat"})">Tái phát <br />(@TaiPhat)</a>
+        <a style=" color: deeppink;" class="TienDo" href="@Url.Action("Index", "DetailLoi", new {TienDo = "Chờ phê duyệt đối sách cố hữu"})">Chờ phê duyệt đối sách cố hữu <br />(@CPDDS)</a>
+        <a style="color: brown;" class="TienDo" href="@Url.Action("Index", "DetailLoi", new {TienDo = "Hoàn thành đối sách cố hữu"})">Hoàn thành đối sách cố hữu <br />(@HTDS)</a>
+        <a style=" color: rebeccapurple;" class="TienDo" href="@Url.Action("Index", "DetailLoi", new {TienDo = "Chờ phê duyệt hiệu quả"})">Chờ phê duyệt hiệu quả <br />(@CPDHQ)</a>
+        <a style=" color: revert;" class="TienDo" href="@Url.Action("Index", "DetailLoi", new {TienDo = "Close"})">Hoàn thành <br />(@HTHQ)</a>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:20px;">
+        <div style="display:flex;justify-content:left;width:25%">
+            <select name="timerange" class="form-control" style="width: 45%; color: #00b386;" onchange="filterChanged(this)">
+                <option value="">Lựa chọn thời gian</option>
+                <option value="7">7 ngày</option>
+                <option value="30">1 tháng</option>
+                <option value="All">Tất cả</option>
+            </select>
+            <button class="form-control" onclick="toggleFilterRow()" style="width: 20%; margin: 0 10px; color: #00b386;">
+                Lọc
+            </button>
+            @*<button class="form-control" style="width: 30%; color: #00b386;">Tải file Excel</button>*@
+        </div>
+        @if (PHL == true)
+        {
+            <a href="@Url.Action("Create","DetailLoi")" class="btn btn-danger">Phát hành lỗi</a>
+        }
+        else
+        {
+            <a href="#" class="btn btn-danger">Phát hành lỗi</a>
+
+        }
+        <form action="@Url.Action("Index", "DetailLoi")" method="get">
+            <div style="display: flex; align-items: center; padding: 0 10px; border: 1px solid; border-radius: 20px;">
+                <input type="text" name="maLoiInput" placeholder="Tìm kiếm..." style="border:none;" />
+                <button type="submit" style="background:none;border:none;"><i class="fa fa-search"></i></button>
+            </div>
+        </form>
+    </div>
+    <div>
+        <table class="table-container">
+            <tr>
+                <th>Số quản lý</th>
+                <th>Phân cấp</th>
+                <th>Tái phát</th>
+                <th>Tiêu đề</th>
+                <th>Model</th>
+                <th>Loại máy</th>
+                <th>Thời gian phát sinh</th>
+                <th>Phân loại hiện tượng (lớn)</th>
+                <th>Phân loại hiện tượng (nhỏ)</th>
+                <th>Tiến độ</th>
+                <th>Phòng ban đảm nhiệm chính</th>
+                <th>Người đảm nhiệm chính</th>
+                <th>Thời gian phát hành</th>
+                <th>Người cập nhật mới nhất</th>
+                <th>Thời gian cập nhật mới nhất</th>
+            </tr>
+            <tr id="rowFilter" style="display: none;">
+                <td></td>
+                <td>
+                    <select class="col2" onchange="filterChanged(this)" name="PhanCap">
+                        <option value="">-Chọn-</option>
+                        <option value="All">All</option>
+                        <option>Nhẹ dừng 1 chuyền</option>
+                        <option>Nhẹ dừng nhiều chuyền</option>
+                        <option>Nặng dừng nhiều chuyền</option>
+                    </select>
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                    <select class="col2" name="Model" onchange="filterChanged(this)">
+                        <option value="">-Chọn-</option>
+                        <option value="All">All</option>
+                        @foreach (var item in lisModel)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </td>
+                <td>
+                    <select class="col2" name="LoaiMay" onchange="filterChanged(this)">
+                        <option value="">-Chọn-</option>
+                        <option value="All">All</option>
+                        @foreach (var item in lisLoaiMay)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </td>
+                <td></td>
+                <td>
+                    <select class="col2" name="HTL" onchange="filterChanged(this)">
+                        <option value="">-Chọn-</option>
+                        <option value="All">All</option>
+                        @foreach (var item in lisHTL)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </td>
+                <td>
+                    <select class="col2" name="HTN" onchange="filterChanged(this)">
+                        <option value="">-Chọn-</option>
+                        <option value="All">All</option>
+                        @foreach (var item in lisHTN)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </td>
+                <td></td>
+                <td>
+                    <select class="col2" name="PB" onchange="filterChanged(this)">
+                        <option value="">-Chọn-</option>
+                        <option value="All">All</option>
+                        @foreach (var item in adIds)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </td>
+                <td>
+                    <select class="col2" name="ADID" onchange="filterChanged(this)">
+                        <option value="">-Chọn-</option>
+                        <option value="All">All</option>
+                        @foreach (var item in listPB)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+
+                </td>
+                <td></td>
+                <td>
+                    <select class="col2" name="NguoiUpdate" onchange="filterChanged(this)">
+                        <option value="">-Chọn-</option>
+                        <option value="All">All</option>
+                        @foreach (var item in adUpdate)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </td>
+                <td></td>
+            </tr>
+            @foreach (var item in Model)
+            {
+                var MaPB = db.tbl_User.Where(x => x.ADID == item.NguoiDamNhiemChinh).FirstOrDefault().MaPB;
+                <tr>
+                    <td><a href="@Url.Action("Details", "DetailLoi", new {ID = item.ID})" style="color:black;">@item.Maloi</a></td>
+                    <td>@item.PhanCap</td>
+                    <td>
+                        @if (item.TaiPhat == true)
+                        {
+                            @item.TaiPhat
+                        }
+                    </td>
+                    <td>@item.TieuDeTV</td>
+                    <td>@item.Model</td>
+                    <td>@item.LoaiMay</td>
+                    <td>@item.ThoiDiemPhatSinh</td>
+                    <td>@item.PhanLoaiHT_Lon</td>
+                    <td>@item.PhanLoaiHT_Nho</td>
+                    <td>@item.TienDo</td>
+                    <td>@MaPB</td>
+                    <td>@item.NguoiDamNhiemChinh</td>
+                    <td>@item.ThoiGianPhatHanh</td>
+                    <td>@item.NguoiUpDateNew</td>
+                    <td>@item.TimeUpdateNew</td>
+                </tr>
+
+            }
+        </table>
+    </div>
+</div>
+
+<script>
+    function toggleFilterRow() {
+        var row = document.getElementById("rowFilter");
+        if (row.style.display === "none" || row.style.display === "") {
+            row.style.display = "table-row";
+        } else {
+            row.style.display = "none";
+        }
+    }
+    function filterChanged(select) {
+        const value = select.value;
+        const url = new URL(window.location.href);
+        url.searchParams.set(select.name, value);
+        window.location.href = url.toString();
+    }
+</script>

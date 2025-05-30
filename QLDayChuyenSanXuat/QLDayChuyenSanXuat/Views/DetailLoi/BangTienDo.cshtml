@@ -1,0 +1,150 @@
+﻿@model IEnumerable<QLDayChuyenSanXuat.Models.tbl_DetailLoi>
+@using QLDayChuyenSanXuat.Models
+@{
+    ViewBag.Title = "BangTienDo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    QLDayChuyenSX db = new QLDayChuyenSX();
+}
+<div style="display: flex; justify-content: space-between; border-bottom: 1px solid black; padding: 10px 0; margin: 10px;">
+    <h4>Bảng tiến độ hoàn thành các nước close lỗi</h4>
+    <div style="display:flex;">
+        <a href="@Url.Action("Index","DetailLoi")" class="btn" style="background-color:transparent;border:none;"> <i class="fa fa-list-ul"></i>&nbsp;Danh sách</a>
+    </div>
+</div>
+
+<div>
+    <table class="table tab">
+        <tr>
+            <th>Mã lỗi</th>
+            <th>Hiện tượng</th>
+            <th>Nguyên nhân</th>
+            <th>Đối sách tạm thời</th>
+            <th>Đối sách cố hữu</th>
+            <th>Hiệu quả</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            if (item.TienDo == "Đang điều tra nguyên nhân")
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Details","DetailLoi",new {id = item.ID})">@item.Maloi</a>
+                    </td>
+                    <td>Hoàn thành</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            }
+            else if (item.TienDo == "Hoàn thành điều tra nguyên nhân")
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Details","DetailLoi",new {id = item.ID})">@item.Maloi</a>
+                    </td>
+                    <td>Hoàn thành</td>
+                    <td>Hoàn thành</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+            }
+            else if (item.TienDo == "Hoàn thành đối sách cố hữu")
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Details","DetailLoi",new {id = item.ID})">@item.Maloi</a>
+                    </td>
+                    <td>Hoàn thành</td>
+                    <td>Hoàn thành</td>
+                    <td>Hoàn thành</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+            }
+            else if (item.TienDo == "Chờ phê duyệt đối sách cố hữu")
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Details","DetailLoi",new {id = item.ID})">@item.Maloi</a>
+                    </td>
+                    <td>Hoàn thành</td>
+                    <td>Hoàn thành</td>
+                    <td>Hoàn thành</td>
+                    <td>Chờ phê duyệt</td>
+                    <td></td>
+                </tr>
+
+            }
+            else if (item.TienDo == "Hoàn thành đối sách cố hữu")
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Details","DetailLoi",new {id = item.ID})">@item.Maloi</a>
+                    </td>
+                    <td>Hoàn thành</td>
+                    <td>Hoàn thành</td>
+                    <td>Hoàn thành</td>
+                    <td>Hoàn thành</td>
+                    <td></td>
+                </tr>
+            }
+            else if (item.TienDo == "Chờ phê duyệt hiệu quả")
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Details","DetailLoi",new {id = item.ID})">@item.Maloi</a>
+                    </td>
+                    <td>Hoàn thành</td>
+                    <td>Hoàn thành</td>
+                    <td>Hoàn thành</td>
+                    <td>Hoàn thành</td>
+                    <td>Chờ phê duyệt</td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Details","DetailLoi",new {id = item.ID})">@item.Maloi</a>
+                    </td>
+                    <td>Hoàn thành</td>
+                    <td>Hoàn thành</td>
+                    <td>Hoàn thành</td>
+                    <td>Hoàn thành</td>
+                    <td>Hoàn thành</td>
+                </tr>
+            }
+
+        }
+    </table>
+</div>
+<style>
+    .tab {
+        width: 98%;
+        margin: 1%;
+        border: 1px gray;
+    }
+
+        .tab th {
+            color: white;
+            height: 50px;
+            background-color: #66ccff;
+        }
+
+        .tab a {
+            color: black;
+        }
+
+            .tab a:hover {
+                color: #007bff;
+            }
+
+        .tab th, td {
+            border: 1px solid gray;
+            text-align: center;
+        }
+</style>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<QLDayChuyenSanXuat.Models.tbl_HieuQua>
+@using QLDayChuyenSanXuat.Models
+@{
+    ViewBag.Title = "LichSuHQ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    QLDayChuyenSX db = new QLDayChuyenSX();
+    var maloi = Model.FirstOrDefault().MaLoi;
+    var detailLoi = db.tbl_DetailLoi.Where(x => x.Maloi == maloi).FirstOrDefault();
+    var hotenNDNPDHQ = db.tbl_User.Where(x => x.ADID == detailLoi.NguoiDNPheDuyetHQ).FirstOrDefault().Name;
+}
+<div style="display: flex; justify-content: space-between; border-bottom: 1px solid black;padding:10px 0;margin:10px;">
+    <h4>Lịch sử cập nhật hiệu quả đối sách lỗi @maloi</h4>
+    <div style="display:flex;">
+        <a href="@Url.Action("Index","DetailLoi")" class="btn" style="background-color:transparent;border:none;"> <i class="fa fa-list-ul"></i>&nbsp;Danh sách</a>
+        <a href="@Url.Action("Details", "DetailLoi", new {id = detailLoi.ID})" class="btn" style="background-color:transparent;border:none;"><i class="fa fa-info-circle"></i>&nbsp;Chi tiết</a>
+        <a href="@Url.Action("lichSu", "DetailLoi", new {maloi = detailLoi.Maloi})" class="btn" style="background-color:transparent;border:none;"><i class="fa fa-clock-o"></i>&nbsp;Lịch sử</a>
+    </div>
+</div>
+@foreach (var item in Model)
+{
+    <div style="margin:1%;">
+        <div style="display:flex;justify-content:space-between;border-bottom:1px solid black;padding:5px 0; margin-top:10px;">
+            <h5><i class="fa fa-clock-o"></i>&nbsp;@item.TimeUpdate</h5>
+        </div>
+        <div style="display:flex;margin:0 10px;">
+            <div style="width:60%;margin-right:3%;">
+                <h6>Chi tiết tiếng Việt</h6>
+                <textarea id="HQDSTV" style="max-width: 100%; width: 100%; white-space: pre-wrap; overflow: hidden; resize: none;" readonly>@item.ChiTietTV</textarea>
+                <h6>Chi tiết tiếng Nhật</h6>
+                <textarea id="HQDSTN" style="max-width: 100%; width: 100%; white-space: pre-wrap; overflow: hidden; resize: none;" readonly>@item.ChiTietTN</textarea>
+            </div>
+
+            <div style="width:40%">
+                <ul>
+                    <li>Thời hạn hoàn thành hiệu quả đối sách - <span style="color: royalblue;">@item.TimeDoneHQ</span></li>
+                    <li>Người xác nhận - <span style="color: royalblue;">@item.NguoiXN</span></li>
+                    <li>Người cập nhật - <span style="color: royalblue;">@item.NguoiUpdate</span></li>
+                    <li>Số cùng sự kiện - <span style="color: royalblue;">@item.SoCungSuKien</span></li>
+                    <li>Trạng thái - <span style="color: royalblue;">@item.TrangThai</span></li>
+                </ul>
+                @if (item.TrangThai == "Hoàn thành")
+                {
+                    <span style="color: red; padding: 5px; border: 2px solid red; margin: 0 25px;">担当: @hotenNDNPDHQ</span>
+                }
+
+            </div>
+        </div>
+    </div>
+}

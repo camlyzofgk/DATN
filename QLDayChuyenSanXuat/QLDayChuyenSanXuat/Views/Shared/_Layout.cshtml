@@ -1,0 +1,76 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- jQuery + jQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/modules/funnel.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <style>
+        a {
+            text-decoration: none;
+            color: white;
+        }
+            a:hover {
+                text-decoration: none;
+            }
+        li {
+            margin: 0 10px;
+            font-size: 18px;
+        }
+    </style>
+    <div style="display: flex; justify-content: space-between; height: 50px; background-color: #0099e6; align-items: center; color: white;">
+        <div style="display:flex;">
+            <div style="font-size:26px;text-align:center;">
+                @Html.ActionLink("Quản lý dây chuyển sản xuất", "Index", "DetailLoi")
+            </div>
+            <ul style="display: flex; list-style: none;text-align:center;margin:0;align-items:center;">
+                <li>@Html.ActionLink("Quản lý vấn đề", "Index", "DetailLoi")</li>
+                <li>@Html.ActionLink("Bảng tiến độ", "BangTienDo", "DetailLoi")</li>
+                <li>@Html.ActionLink("Biểu đồ tiến độ", "BieuDoTienDo", "DetailLoi")</li>
+                <li>@Html.ActionLink("Biểu đồ thống kê", "BieuDoThongKe", "DetailLoi")</li>
+                <li>@Html.ActionLink("Nhập kho", "Index", "PhieuNhap")</li>
+                <li>@Html.ActionLink("Xuất kho", "Index", "PhieuXuat")</li>
+                <li>@Html.ActionLink("List linh kiện", "Index", "LinhKien")</li>
+            </ul>
+        </div>
+        <div>
+            <a class="nav-link dropdown-toggle my-auto" role="button" href="#" id="usermenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-controls="usermenu-dropdown" aria-label="User menu" title="Xin chào @Session["ADID"]">
+                <span class="d-none d-md-inline-block mx-1" id="yui_3_17_2_1_1744526298783_20">Xin chào @Session["ADID"]</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" role="menu" id="usermenu-dropdown" aria-labelledby="usermenu">
+                <a class="dropdown-item" href="@Url.Action("CaiDat","DetailLoi")" title="Cài đặt"><i class="fa fa-cog"></i>&nbsp; Cài đặt</a>
+                <a class="dropdown-item" href="@Url.Action("Logout","QLUser")" title="Đăng xuất"><i class="fa fa-sign-out"></i>&nbsp; Đăng xuất</a>
+            </div>
+        </div>
+    </div>
+    @RenderBody()
+    <div class="container body-content">
+
+        <hr />
+        <footer>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
